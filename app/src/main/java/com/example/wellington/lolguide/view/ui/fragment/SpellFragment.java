@@ -15,6 +15,9 @@ import butterknife.ButterKnife;
 
 public class SpellFragment extends Fragment {
 
+    public static final String SPELL = "spell";
+
+
     public SpellFragment() {
         // Required empty public constructor
     }

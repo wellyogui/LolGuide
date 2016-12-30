@@ -41,8 +41,8 @@ public class MyPageAdapter extends FragmentStatePagerAdapter {
                 break;
             case 1:
                 fragment = new HabilidadesFragment();
-                bundle.putSerializable(HabilidadesFragment.HABILIDADE, (Serializable) this.championDto.spells);
-                bundle.putSerializable(HabilidadesFragment.PASSIVA, this.championDto.passive);
+                bundle.putSerializable(HabilidadesFragment.SKILL, (Serializable) this.championDto.spells);
+                bundle.putSerializable(HabilidadesFragment.PASSIVE, this.championDto.passive);
                 break;
             case 2:
                 fragment = new LoreFragment();

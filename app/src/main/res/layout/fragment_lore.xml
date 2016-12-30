@@ -13,17 +13,14 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/fontTitleStyle"
             android:text="Lore: "
-            android:textSize="25dp"/>
+            />
 
         <TextView
             android:id="@+id/tvLore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/fontText"
             android:text="texto"
-            android:textSize="20dp"
             android:paddingLeft="25dp"/>
 
     </LinearLayout>

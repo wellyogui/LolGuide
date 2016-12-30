@@ -12,35 +12,25 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AllyTips: "
-            android:textSize="25dp"/>
+            style="@style/fontTitleStyle"
+            android:text="AllyTips: " />
 
         <TextView
             android:id="@+id/tvAllyTips"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="texto"
-            android:textSize="20dp"
-            android:paddingLeft="25dp"/>
-
-
+            style="@style/fontText"
+            android:paddingLeft="25dp"
+            android:text="texto" />
 
         <TextView
+            style="@style/fontTitleStyle"
             android:paddingTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="EnemyTips: "
-            android:textSize="25dp"/>
+            android:text="EnemyTips: " />
 
         <TextView
             android:id="@+id/tvEnemyTips"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="texto"
-            android:textSize="20dp"
-            android:paddingLeft="25dp"/>
+            style="@style/fontText"
+            android:paddingLeft="25dp"
+            android:text="texto" />
 
     </LinearLayout>
 

@@ -22,7 +22,7 @@ public class Stats implements Serializable{
     public Double attackdamageperlevel;
     @SerializedName("attackrange")
     @Expose
-    public Integer attackrange;
+    public Double attackrange;
     @SerializedName("attackspeedoffset")
     @Expose
     public Double attackspeedoffset;
@@ -49,19 +49,19 @@ public class Stats implements Serializable{
     public Double hpregenperlevel;
     @SerializedName("movespeed")
     @Expose
-    public Integer movespeed;
+    public Double movespeed;
     @SerializedName("mp")
     @Expose
     public Double mp;
     @SerializedName("mpperlevel")
     @Expose
-    public Integer mpperlevel;
+    public Double mpperlevel;
     @SerializedName("mpregen")
     @Expose
-    public Integer mpregen;
+    public Double mpregen;
     @SerializedName("mpregenperlevel")
     @Expose
-    public Integer mpregenperlevel;
+    public Double mpregenperlevel;
     @SerializedName("spellblock")
     @Expose
     public Double spellblock;

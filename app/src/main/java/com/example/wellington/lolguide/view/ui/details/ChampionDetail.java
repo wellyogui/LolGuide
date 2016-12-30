@@ -6,20 +6,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.ObjectAdapter;
-import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.presenter.ChampionPresenter;
 import com.example.wellington.lolguide.repository.contracts.ChampionDetailListener;
 import com.example.wellington.lolguide.utils.AppConfigs;
-import com.example.wellington.lolguide.view.adapter.MainAdapter;
-import com.example.wellington.lolguide.view.ui.fragment.ChampionFragment;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,17 +31,27 @@ public class ChampionDetail extends AppCompatActivity {
 
     private String region = "br";
 
-
+    //region [Bind Principal Info]
     @Bind(R.id.ivPortrait)
     ImageView ivPortrait;
     @Bind(R.id.tvNameChampion)
     TextView tvNameChampion;
     @Bind(R.id.tvTitleChampion)
     TextView tvTitleChampion;
-    @Bind(R.id.sliding_tabs)
+    //endregion
+
+    //region [Bind Tags]
+    @Bind(R.id.tvTag)
+    TextView tvTag;
+
+    //endregion
+
+    //region [Bind TabLayout]
+    @Bind(R.id.sliding_tabs_main)
     TabLayout tabLayout;
-    @Bind(R.id.viewpager)
+    @Bind(R.id.viewpager_main)
     ViewPager viewPager;
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,10 +104,35 @@ public class ChampionDetail extends AppCompatActivity {
         tvNameChampion.setText(championDto.name);
         tvTitleChampion.setText(championDto.title);
 
+        getTag(championDto.tags);
+
         Picasso.with(mContext).load(String.format(AppConfigs.portraitChampion, championDto.image.full)).into(ivPortrait);
 
 
     }
+
+    private void getTag(List<String> tagList) {
+
+
+        String mTag = "";
+
+        for (String tag : tagList) {
+
+            mTag += tag + "/";
+
+
+
+            }
+
+        mTag = mTag.substring(0, mTag.length()-1);
+
+        tvTag.setText(mTag);
+
+        }
+
+
+
+
 
     public void setTabs(ChampionDto championdto) {
          FragmentManager fragmentManager = getSupportFragmentManager();

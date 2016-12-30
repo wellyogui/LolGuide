@@ -16,6 +16,8 @@ import butterknife.ButterKnife;
 public class ItemFragment extends Fragment {
 
 
+    public static final String ITEM = "item";
+
     public ItemFragment() {
         // Required empty public constructor
     }

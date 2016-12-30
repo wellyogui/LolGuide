@@ -17,8 +17,7 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/fontTitleStyle"
                 android:text="Informações: "
                 android:textSize="25dp" />
 
@@ -28,15 +27,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/fontSubTitle"
                     android:paddingLeft="25dp"
                     android:text="Ataque: " />
 
                 <TextView
                     android:id="@+id/tvAtaque"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/fontText"
                     android:text="Ataque" />
 
 
@@ -48,15 +45,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+
+                    style="@style/fontSubTitle"
                     android:paddingLeft="25dp"
                     android:text="Defesa: " />
 
                 <TextView
                     android:id="@+id/tvDefesa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/fontText"
                     android:text="Defesa" />
 
             </LinearLayout>
@@ -67,15 +63,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/fontSubTitle"
                     android:paddingLeft="25dp"
                     android:text="Magica: " />
 
                 <TextView
                     android:id="@+id/tvMagica"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/fontText"
                     android:text="Magica" />
 
             </LinearLayout>
@@ -86,15 +80,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/fontSubTitle"
                     android:paddingLeft="25dp"
                     android:text="Dificuldade: " />
 
                 <TextView
                     android:id="@+id/tvDificu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/fontText"
                     android:text="Dificuldade:" />
 
             </LinearLayout>
@@ -106,10 +98,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/fontTitleStyle"
                     android:text="Stats:"
-                    android:textSize="25dp"/>
+                    />
 
 
                 <LinearLayout
@@ -118,28 +109,254 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/fontSubTitle"
                         android:paddingLeft="25dp"
-                        android:text="Amor: " />
+                        android:text="HP: " />
 
 
                     <TextView
-                        android:id="@+id/tvArmor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Amor" />
+                        android:id="@+id/tvVida"
+                        style="@style/fontText"
+                        android:text="Vida" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/tvVidaPerLevel"
+                        style="@style/fontText"
                         android:paddingLeft="10dp"
-                        android:text="(+ per level)" />
-
-
-
+                        android:text="(+ por level)" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Regeneração de HP: " />
+
+
+                    <TextView
+                        android:id="@+id/tvVidaRegen"
+                        style="@style/fontText"
+                        android:text="Regen de HP" />
+
+                    <TextView
+                        android:id="@+id/tvVidaRegenPorLevel"
+                        style="@style/fontText"
+                        android:paddingLeft="10dp"
+                        android:text="(+ por level)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Armadura: " />
+
+
+                    <TextView
+                        android:id="@+id/tvArmadura"
+                        style="@style/fontText"
+                        android:text="armadura" />
+
+                    <TextView
+                        android:id="@+id/tvArmaduraPorLevel"
+                        style="@style/fontText"
+                        android:paddingLeft="10dp"
+                        android:text="(+ por level)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Dano de Ataque: " />
+
+
+                    <TextView
+                        android:id="@+id/tvDanoAtaque"
+                        style="@style/fontText"
+                        android:text="danoAtaque" />
+
+                    <TextView
+                        android:id="@+id/tvDanoAtaquePorLevel"
+                        style="@style/fontText"
+                        android:paddingLeft="10dp"
+                        android:text="(+ por level)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Velocidade do Ataque: " />
+
+
+                    <TextView
+                        android:id="@+id/tvVelocidadeAtaque"
+                        style="@style/fontText"
+                        android:text="Velocidade" />
+
+                    <TextView
+                        android:id="@+id/tvVelocidadeAtaquePorLevel"
+                        style="@style/fontText"
+                        android:paddingLeft="10dp"
+                        android:text="(+ por level)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Alcance: " />
+
+
+                    <TextView
+                        android:id="@+id/tvAlcance"
+                        style="@style/fontText"
+                        android:text="alcance" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Ataque Crítico: " />
+
+
+                    <TextView
+                        android:id="@+id/tvAtaqueCritico"
+                        style="@style/fontText"
+                        android:text="critico" />
+
+                    <TextView
+                        android:id="@+id/tvAtaqueCriticoPorLevel"
+                        style="@style/fontText"
+                        android:paddingLeft="10dp"
+                        android:text="(+ por level)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Velocidade de movimentação: " />
+
+
+                    <TextView
+                        android:id="@+id/tvMovimentacao"
+                        style="@style/fontText"
+                        android:text="movimentacao" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="MP: " />
+
+
+                    <TextView
+                        android:id="@+id/tvMp"
+                        style="@style/fontText"
+                        android:text="mp" />
+
+                    <TextView
+                        android:id="@+id/tvMPPerLevel"
+                        style="@style/fontText"
+                        android:paddingLeft="10dp"
+                        android:text="(+ por level)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Regeneração de MP: " />
+
+
+                    <TextView
+                        android:id="@+id/tvMpRegen"
+                        style="@style/fontText"
+                        android:text="mp Regen" />
+
+                    <TextView
+                        android:id="@+id/tvMPRegenPerLevel"
+                        style="@style/fontText"
+                        android:paddingLeft="10dp"
+                        android:text="(+ por level)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/fontSubTitle"
+                        android:paddingLeft="25dp"
+                        android:text="Bloqueio de Feitiço: " />
+
+
+                    <TextView
+                        android:id="@+id/tvSpellBlock"
+                        style="@style/fontText"
+                        android:text="spellBlock" />
+
+                    <TextView
+                        android:id="@+id/tvSpellBlockPerLevel"
+                        style="@style/fontText"
+                        android:paddingLeft="10dp"
+                        android:text="(+ por level)" />
+
+                </LinearLayout>
+
 
 
             </LinearLayout>
