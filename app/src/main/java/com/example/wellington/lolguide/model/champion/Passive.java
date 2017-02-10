@@ -15,9 +15,7 @@ public class Passive implements Serializable{
     @SerializedName("description")
     @Expose
     public String description;
-    @SerializedName("sanitizedDescription")
-    @Expose
-    public String sanitizedDescription;
+
     @SerializedName("image")
     @Expose
     public Image image;

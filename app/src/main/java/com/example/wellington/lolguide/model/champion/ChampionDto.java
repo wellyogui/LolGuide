@@ -16,9 +16,6 @@ public class ChampionDto {
     @SerializedName("id")
     @Expose
     public Integer id;
-    @SerializedName("key")
-    @Expose
-    public String key;
     @SerializedName("name")
     @Expose
     public String name;
@@ -34,9 +31,6 @@ public class ChampionDto {
     @SerializedName("lore")
     @Expose
     public String lore;
-    @SerializedName("blurb")
-    @Expose
-    public String blurb;
     @SerializedName("allytips")
     @Expose
     public List<String> allytips;
@@ -46,9 +40,6 @@ public class ChampionDto {
     @SerializedName("tags")
     @Expose
     public List<String> tags;
-    @SerializedName("partype")
-    @Expose
-    public String partype;
     @SerializedName("info")
     @Expose
     public Info info;
@@ -61,8 +52,6 @@ public class ChampionDto {
     @SerializedName("passive")
     @Expose
     public Passive passive;
-    @SerializedName("recommended")
-    @Expose
-    public List<Recommended> recommended;
+
 
 }

@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".view.ui.MainActivity">
 
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:bmb_buttonEnum="textInsideCircle"
+        app:bmb_piecePlaceEnum="piecePlace_dot_9_1"
+        app:bmb_buttonPlaceEnum="buttonPlace_sc_9_1"
+        android:layout_centerInParent="true"
+        />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,6 +31,7 @@
         android:layout_height="60dp"
         android:background="@color/colorPrimaryDark"
         app:tabGravity="center"
+        android:visibility="gone"
         app:tabMode="fixed"
         android:layout_alignParentBottom="true"
         />

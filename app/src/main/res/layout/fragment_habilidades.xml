@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dimGrey"
     tools:context="com.example.wellington.lolguide.view.ui.details.fragment.HabilidadesFragment">
 
     <LinearLayout
@@ -144,9 +145,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#A9A9A9"
-                android:orientation="vertical"
-                android:paddingLeft="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvNomeSkill"

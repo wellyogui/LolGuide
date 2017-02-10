@@ -25,7 +25,8 @@ import java.io.Serializable;
  * Created by wellington on 28/12/16.
  */
 
-public class MyPageAdapterMain extends FragmentStatePagerAdapter {
+public class MyPageAdapterMain extends FragmentStatePagerAdapter{
+
 
 
 
@@ -61,7 +62,7 @@ public class MyPageAdapterMain extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 1;
     }
 
     @Override

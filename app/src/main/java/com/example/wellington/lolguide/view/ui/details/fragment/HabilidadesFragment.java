@@ -148,7 +148,7 @@ public class HabilidadesFragment extends Fragment {
 
 
         tvNomeSkill.setText(mSpell.get(index).name);
-        tvDescricaoSkill.setText(mSpell.get(index).description);
+        tvDescricaoSkill.setText(Html.fromHtml(mSpell.get(index).description));
         tvCostSkill.setText(mSpell.get(index).costBurn);
         tvAlcance.setText(mSpell.get(index).rangeBurn);
         tvCoolDownSkill.setText(mSpell.get(index).cooldownBurn);
@@ -170,7 +170,7 @@ public class HabilidadesFragment extends Fragment {
     public void setSkillPassive() {
 
         tvNomeSkill.setText(mPassive.name);
-        tvDescricaoSkill.setText(mPassive.description);
+        tvDescricaoSkill.setText(Html.fromHtml(mPassive.description));
 
 
         tvCoolDownSkill.setVisibility(View.INVISIBLE);

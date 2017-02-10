@@ -9,8 +9,5 @@ public class Item {
     @SerializedName("id")
     @Expose
     public Integer id;
-    @SerializedName("count")
-    @Expose
-    public Integer count;
 
 }

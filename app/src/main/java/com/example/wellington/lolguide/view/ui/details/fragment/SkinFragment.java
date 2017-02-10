@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 public class SkinFragment extends Fragment {
 
     public static final String SKIN = "skins";
+    public static final String NAMECH = "championName";
 
     private Context mContext;
 
@@ -37,12 +38,17 @@ public class SkinFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_skin, container, false);
         ButterKnife.bind(this, view);
+
+        Bundle bundle = getArguments();
+        if (bundle != null){
+
+        }
+
         return view;
 
     }
 
     public void getSkins(Skin skin){
-
 
     }
 

@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             tools:text="Champion"
             android:textAlignment="center"
+            android:textColor="@color/whiteFont"
             android:maxLines="1"
             android:textSize="@dimen/fontSize"/>
 

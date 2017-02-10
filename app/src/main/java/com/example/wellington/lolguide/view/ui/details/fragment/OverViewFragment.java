@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.wellington.lolguide.R;
@@ -41,6 +42,15 @@ public class OverViewFragment extends Fragment {
     TextView tvMagica;
     @Bind(R.id.tvDificu)
     TextView tvDificuldade;
+    @Bind(R.id.progressBarAt)
+    ProgressBar progressBarAt;
+    @Bind(R.id.progressBarDe)
+    ProgressBar progressBarDe;
+    @Bind(R.id.progressBarMa)
+    ProgressBar progressBarMa;
+    @Bind(R.id.progressBarDi)
+    ProgressBar progressBarDi;
+
     //endregion
 
     //region [Bind Stats]
@@ -120,6 +130,16 @@ public class OverViewFragment extends Fragment {
         tvDefesa.setText(String.valueOf(info.defense));
         tvMagica.setText(String.valueOf(info.magic));
         tvDificuldade.setText(String.valueOf(info.difficulty));
+
+        progressBarAt.setMax(10);
+        progressBarAt.setProgress(info.attack);
+        progressBarDe.setMax(10);
+        progressBarDe.setProgress(info.defense);
+        progressBarMa.setMax(10);
+        progressBarMa.setProgress(info.magic);
+        progressBarDi.setMax(10);
+        progressBarDi.setProgress(info.difficulty);
+
 
     }
 

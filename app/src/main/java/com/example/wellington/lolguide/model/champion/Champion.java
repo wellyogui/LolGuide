@@ -12,9 +12,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Champion {
 
-    @SerializedName("type")
-    @Expose
-    public String type;
     @SerializedName("version")
     @Expose
     public String version;
