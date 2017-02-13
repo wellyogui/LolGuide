@@ -35,9 +35,12 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex:rxandroid:1.2.1'
+
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.github.clans:fab:1.6.4'
+
 
     compile 'com.nightonke:boommenu:2.0.7'
     testCompile 'junit:junit:4.12'

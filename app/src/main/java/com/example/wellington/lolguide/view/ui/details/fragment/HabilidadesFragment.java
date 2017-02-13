@@ -103,6 +103,12 @@ public class HabilidadesFragment extends Fragment {
             setSkill(0);
 
 
+            ivBorder2.setVisibility(View.GONE);
+            ivBorder3.setVisibility(View.GONE);
+            ivBorder4.setVisibility(View.GONE);
+            ivBorder5.setVisibility(View.GONE);
+
+
         }
 
         return view;
@@ -121,26 +127,61 @@ public class HabilidadesFragment extends Fragment {
     @OnClick(R.id.ibSkill1)
     public void ibSkill1OnClick() {
         setSkill(0);
+
+        ivBorder1.setVisibility(View.VISIBLE);
+        ivBorder2.setVisibility(View.GONE);
+        ivBorder3.setVisibility(View.GONE);
+        ivBorder4.setVisibility(View.GONE);
+        ivBorder5.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.ibSkill2)
     public void ibSkill2OnClick() {
         setSkill(1);
+
+
+        ivBorder1.setVisibility(View.GONE);
+        ivBorder2.setVisibility(View.VISIBLE);
+        ivBorder3.setVisibility(View.GONE);
+        ivBorder4.setVisibility(View.GONE);
+        ivBorder5.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.ibSkill3)
     public void ibSkill3OnClick() {
         setSkill(2);
+
+
+        ivBorder1.setVisibility(View.GONE);
+        ivBorder2.setVisibility(View.GONE);
+        ivBorder3.setVisibility(View.VISIBLE);
+        ivBorder4.setVisibility(View.GONE);
+        ivBorder5.setVisibility(View.GONE);
+
     }
 
     @OnClick(R.id.ibSkill4)
     public void ibSkill4OnClick() {
         setSkill(3);
+
+
+        ivBorder1.setVisibility(View.GONE);
+        ivBorder2.setVisibility(View.GONE);
+        ivBorder3.setVisibility(View.GONE);
+        ivBorder4.setVisibility(View.VISIBLE);
+        ivBorder5.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.ibSkill5)
     public void ibSkill5OnClick() {
         setSkillPassive();
+
+
+        ivBorder1.setVisibility(View.GONE);
+        ivBorder2.setVisibility(View.GONE);
+        ivBorder3.setVisibility(View.GONE);
+        ivBorder4.setVisibility(View.GONE);
+        ivBorder5.setVisibility(View.VISIBLE);
     }
 
 
