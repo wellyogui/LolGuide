@@ -16,9 +16,10 @@ import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.utils.AppConfigs;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterViewHolder>  {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterViewHolder> {
 
     public List<ObjectAdapter> mObjecterList;
     private final OnObjectClickListener listener;
@@ -51,13 +52,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterVie
         holder.bind(mObjecterList.get(position), listener);
 
         String url = "";
-        switch (ob.Type){
+        switch (ob.Type) {
 
-            case CHAMPION: url = String.format(AppConfigs.portraitChampion, ob.Portrait);
+            case CHAMPION:
+                url = String.format(AppConfigs.portraitChampion, ob.Portrait);
                 break;
-            case SPELL: url = String.format(AppConfigs.portraitSpell, ob.Portrait);
+            case SPELL:
+                url = String.format(AppConfigs.portraitSpell, ob.Portrait);
                 break;
-            case ITEM: url = String.format(AppConfigs.portraitItem, ob.Portrait);
+            case ITEM:
+                url = String.format(AppConfigs.portraitItem, ob.Portrait);
                 break;
         }
 
@@ -82,7 +86,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterVie
             this.ivRetrato = (ImageView) itemView.findViewById(R.id.ivImagePortrait);
         }
 
-        public void bind(final ObjectAdapter  objectAdapterListItem, final OnObjectClickListener listener) {
+        public void bind(final ObjectAdapter objectAdapterListItem, final OnObjectClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -90,5 +94,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterVie
                 }
             });
         }
+    }
+
+
+    public void adc(String filter) {
+//        List<ObjectAdapter> lists = new ArrayList<>();
+//        for (ObjectAdapter championDto : mObjecterList) {
+//            if (championDto.championDto != null) {
+//                if (championDto.championDto.tags != null) {
+//                    if (!championDto.championDto.tags.contains(filter)) {
+//                        mObjecterList.remove(championDto);
+//                    }
+//                }
+//            }
+//        }
+//
+//        notifyDataSetChanged();
     }
 }

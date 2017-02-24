@@ -1,35 +1,21 @@
 package com.example.wellington.lolguide.view.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.support.design.widget.FloatingActionButton;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
+import com.example.wellington.lolguide.model.ChampionEnum;
 import com.example.wellington.lolguide.model.ObjectAdapter;
-import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.view.ui.details.ChampionDetail;
-import com.example.wellington.lolguide.view.ui.details.MyPageAdapter;
 import com.example.wellington.lolguide.view.ui.fragment.ChampionFragment;
-import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
-import com.nightonke.boommenu.BoomButtons.TextInsideCircleButton;
-import com.nightonke.boommenu.BoomMenuButton;
-import com.nightonke.boommenu.Util;
+import com.github.clans.fab.FloatingActionMenu;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     @Bind(R.id.viewpager_main)
     ViewPager viewPager;
+    @Bind(R.id.menu)
+    FloatingActionMenu fab;
+
+    MyPageAdapterMain mpAdapter;
 
 
     @Override
@@ -58,14 +48,66 @@ public class MainActivity extends AppCompatActivity {
 
         setTabs();
 
+        fab.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!fab.isOpened()) {
+                    fab.open(true);
+                    fab.getMenuIconView().setImageResource(R.drawable.ic_close);
+                } else {
+                    fab.close(true);
+                    fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+                }
+            }
+        });
 
 
     }
+
+    //region [OnClick]
 
     @OnClick(R.id.az)
-    public void ordenarAZ(){
-
+    public void ordenarAZ() {
+        ((ChampionFragment) mpAdapter.getItem(0)).reverse();
     }
+
+    @OnClick(R.id.tank)
+    public void filterTank() {
+        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.TANK);
+    }
+
+    @OnClick(R.id.mage)
+    public void filterMage() {
+        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.MAGE);
+    }
+
+    @OnClick(R.id.marskman)
+    public void filterMarskman() {
+        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.MARKSMAN);
+    }
+
+    @OnClick(R.id.support)
+    public void filterSupport() {
+        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.SUPPORT);
+    }
+
+    @OnClick(R.id.fighter)
+    public void filterFigher() {
+        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.FIGHTER);
+    }
+
+    @OnClick(R.id.assassin)
+    public void filterAssisn() {
+        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.ASSASSIN);
+    }
+
+    @OnClick(R.id.remove)
+    public void filterRemove() {
+        ((ChampionFragment) mpAdapter.getItem(0)).nonFilter();
+    }
+
+    //endregion
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 //        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.shield));
 
 
-        MyPageAdapterMain mpAdapter = new MyPageAdapterMain(fragmentManager);
+        mpAdapter = new MyPageAdapterMain(fragmentManager);
         viewPager.setAdapter(mpAdapter);
         viewPager.setCurrentItem(0);
         viewPager.setOffscreenPageLimit(tabLayout.getTabCount());

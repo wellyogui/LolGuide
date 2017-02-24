@@ -27,6 +27,7 @@ public class ObjectAdapter {
     public String Id;
     public String Portrait;
     public ObjectType Type;
+    public ChampionDto championDto;
 
     public static List<ObjectAdapter> convertChampionToObject(List<ChampionDto> championList) {
 
@@ -39,6 +40,7 @@ public class ObjectAdapter {
             objectAdapter.Id = String.valueOf(champion.id);
             objectAdapter.Portrait = champion.image.full;
             objectAdapter.Type = ObjectAdapter.ObjectType.CHAMPION;
+            objectAdapter.championDto = champion;
             objectAdapters.add(objectAdapter);
         }
 

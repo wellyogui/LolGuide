@@ -38,24 +38,20 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         fab:menu_animationDelayPerItem="50"
-        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_backgroundColor="#9900001A"
         fab:menu_buttonSpacing="0dp"
         fab:menu_colorNormal="#DA4336"
         fab:menu_colorPressed="#E75043"
         fab:menu_colorRipple="#99FFFFFF"
-        fab:menu_fab_label="Action Button"
+        fab:menu_fab_label="Filtro"
         fab:menu_fab_size="normal"
-        fab:menu_icon="@drawable/fab_add"
+        fab:menu_icon="@drawable/ic_menu"
         fab:menu_labels_colorNormal="#333333"
         fab:menu_labels_colorPressed="#444444"
         fab:menu_labels_colorRipple="#66FFFFFF"
         fab:menu_labels_cornerRadius="3dp"
         fab:menu_labels_ellipsize="none"
-        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
         fab:menu_labels_margin="0dp"
         fab:menu_labels_maxLines="-1"
         fab:menu_labels_padding="8dp"
@@ -64,6 +60,7 @@
         fab:menu_labels_paddingRight="8dp"
         fab:menu_labels_paddingTop="4dp"
         fab:menu_labels_position="left"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
         fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
         fab:menu_labels_showShadow="true"
         fab:menu_labels_singleLine="false"
@@ -80,7 +77,66 @@
             android:id="@+id/az"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_az"
+            fab:fab_label="Ordem Alfabetica"
             fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/tank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Tanque"
+            android:src="@drawable/ic_tank"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fighter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Lutador"
+            android:src="@drawable/ic_fighter"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/marskman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Atirador"
+            android:src="@drawable/ic_adc"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/assassin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Assassino"
+            android:src="@drawable/ic_assassin"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Suporte"
+            android:src="@drawable/ic_support"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/mage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Mago"
+            android:src="@drawable/ic_mage"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Limpar Filtro"
+            android:src="@drawable/ic_nonfilter"/>
+
 
     </com.github.clans.fab.FloatingActionMenu>
 

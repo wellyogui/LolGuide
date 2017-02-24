@@ -20,6 +20,8 @@ import com.example.wellington.lolguide.view.ui.fragment.ItemFragment;
 import com.example.wellington.lolguide.view.ui.fragment.SpellFragment;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wellington on 28/12/16.
@@ -28,10 +30,16 @@ import java.io.Serializable;
 public class MyPageAdapterMain extends FragmentStatePagerAdapter{
 
 
-
+    List<Fragment> fragments;
 
     public MyPageAdapterMain(FragmentManager fm) {
         super(fm);
+
+        fragments = new ArrayList<>();
+
+        fragments.add(new ChampionFragment());
+
+
     }
 
     @Override
@@ -42,7 +50,7 @@ public class MyPageAdapterMain extends FragmentStatePagerAdapter{
 
         switch (position) {
             case 0:
-                fragment = new ChampionFragment();
+                    fragment = fragments.get(position);
                 break;
             case 1:
                 fragment = new SpellFragment();
@@ -55,7 +63,7 @@ public class MyPageAdapterMain extends FragmentStatePagerAdapter{
                 fragment = new Fragment();
         }
 
-        fragment.setArguments(bundle);
+//        fragment.setArguments(bundle);
 
         return fragment;
     }

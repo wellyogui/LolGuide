@@ -1,20 +1,18 @@
 package com.example.wellington.lolguide.view.ui.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
+import com.example.wellington.lolguide.model.ChampionEnum;
 import com.example.wellington.lolguide.model.ObjectAdapter;
-import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.presenter.ChampionPresenter;
 import com.example.wellington.lolguide.repository.contracts.ChampionListListener;
@@ -23,6 +21,8 @@ import com.example.wellington.lolguide.view.adapter.MainAdapter;
 import com.example.wellington.lolguide.view.ui.MainActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.Bind;
@@ -33,19 +33,20 @@ public class ChampionFragment extends Fragment {
 
     public static final String CHAMPION = "champion";
 
+    //region [Private Members]
     private MainAdapter mainAdapter;
     private ChampionPresenter championPresenter;
     private GridLayoutManager mLayoutManager;
     private List<ObjectAdapter> list = new ArrayList<>();
-
-    public boolean isFirstLoad = true;
-    private int mNextOffset = 0;
-
+    private List<ChampionDto> champList = new ArrayList<>();
+    private List<ChampionDto> filterChamp = new ArrayList<>();
     private String region = "br";
-
+    //endregion
 
     @Bind(R.id.rvChampion)
     RecyclerView rvChampion;
+    @Bind(R.id.searchView)
+    SearchView searchView;
 
     public ChampionFragment() {
         // Required empty public constructor
@@ -64,20 +65,19 @@ public class ChampionFragment extends Fragment {
         rvChampion.setLayoutManager(mLayoutManager);
 
 
-
         getList();
 
         return view;
-
     }
 
+
     private void getList() {
-        championPresenter.loadChampionList(region, "image,info", AppConfigs.api_key, new ChampionListListener() {
+        championPresenter.loadChampionList(region, "image,info,tags", AppConfigs.api_key, new ChampionListListener() {
             @Override
             public void onChampionListLoad(List<ChampionDto> championList) {
 
                 displayChampionList(ObjectAdapter.convertChampionToObject(championList));
-
+                champList = championList;
 
             }
 
@@ -100,7 +100,7 @@ public class ChampionFragment extends Fragment {
 
     public void displayChampionList(List<ObjectAdapter> championList) {
         list = championList;
-
+        sort();
         mainAdapter = new MainAdapter(getActivity(), list, new MainAdapter.OnObjectClickListener() {
             @Override
             public void OnObjectClickListener(ObjectAdapter objectAdapter) {
@@ -111,8 +111,43 @@ public class ChampionFragment extends Fragment {
         });
 
         rvChampion.setAdapter(mainAdapter);
+
+
         mainAdapter.notifyDataSetChanged();
 
     }
+
+    public void sort() {
+        Collections.sort(list, new Comparator<ObjectAdapter>() {
+            @Override
+            public int compare(ObjectAdapter o1, ObjectAdapter o2) {
+                return o1.Name.compareToIgnoreCase(o2.Name);
+            }
+        });
+    }
+
+    public void reverse() {
+        Collections.reverse(list);
+
+        mainAdapter.notifyDataSetChanged();
+
+    }
+
+    public void filter(ChampionEnum championEnum) {
+
+        filterChamp = championPresenter.filterList(champList, championEnum);
+
+        List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(filterChamp);
+
+        displayChampionList(champFilter);
+
+    }
+
+    public void nonFilter() {
+        List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(champList);
+
+        displayChampionList(champFilter);
+    }
+
 
 }

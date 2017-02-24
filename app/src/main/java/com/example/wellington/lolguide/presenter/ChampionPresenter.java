@@ -1,22 +1,18 @@
 package com.example.wellington.lolguide.presenter;
 
-import com.example.wellington.lolguide.model.ObjectAdapter;
+import com.example.wellington.lolguide.model.ChampionEnum;
 import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
-import com.example.wellington.lolguide.model.spell.Spell;
-import com.example.wellington.lolguide.model.spell.SummonerSpellDto;
 import com.example.wellington.lolguide.repository.CLolApi;
 import com.example.wellington.lolguide.repository.contracts.ChampionDetailListener;
 import com.example.wellington.lolguide.repository.contracts.ChampionListListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.internal.util.ObserverSubscriber;
 import rx.schedulers.Schedulers;
 
 /**
@@ -64,7 +60,7 @@ public class ChampionPresenter {
                 });
     }
 
-    public void loadChampionDetails(String region, String id,final String champData, String key, final ChampionDetailListener listener) {
+    public void loadChampionDetails(String region, String id, final String champData, String key, final ChampionDetailListener listener) {
         listener.onRequestStarted();
 
         lolApi.getmLolApi().getChampion(region, id, champData, key)
@@ -88,4 +84,30 @@ public class ChampionPresenter {
                     }
                 });
     }
+
+    public List<ChampionDto> filterList(List<ChampionDto> championList, ChampionEnum championEnum) {
+
+        List<ChampionDto> filterChamp = new ArrayList<>();
+
+
+        if (championList != null && championList.size() > 0) {
+            for (ChampionDto champions : championList) {
+
+                if (champions.tags != null && champions.tags.size() > 0) {
+
+                    for (String tag : champions.tags) {
+
+                        if (tag.toLowerCase().equals(championEnum.toString().toLowerCase())) {
+                            filterChamp.add(champions);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        return filterChamp;
+
+    }
+
 }
