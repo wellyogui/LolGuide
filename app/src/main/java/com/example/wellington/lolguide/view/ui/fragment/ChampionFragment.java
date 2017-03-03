@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
@@ -29,7 +29,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class ChampionFragment extends Fragment {
+public class ChampionFragment extends Fragment  {
 
     public static final String CHAMPION = "champion";
 
@@ -40,13 +40,15 @@ public class ChampionFragment extends Fragment {
     private List<ObjectAdapter> list = new ArrayList<>();
     private List<ChampionDto> champList = new ArrayList<>();
     private List<ChampionDto> filterChamp = new ArrayList<>();
+
     private String region = "br";
     //endregion
 
     @Bind(R.id.rvChampion)
     RecyclerView rvChampion;
-    @Bind(R.id.searchView)
-    SearchView searchView;
+    @Bind(R.id.ivLogo)
+    ImageView ivLogo;
+
 
     public ChampionFragment() {
         // Required empty public constructor
@@ -96,6 +98,11 @@ public class ChampionFragment extends Fragment {
 
             }
         });
+    }
+
+    public void closeLogo() {
+        ivLogo.setVisibility(View.GONE);
+
     }
 
     public void displayChampionList(List<ObjectAdapter> championList) {

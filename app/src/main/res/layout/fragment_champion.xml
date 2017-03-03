@@ -6,26 +6,19 @@
     tools:context=".view.ui.fragment.ChampionFragment">
 
 
-    <TextView
-        android:id="@+id/tvHeaderChampion"
-        style="@style/TextHeader"
-        android:text="Champion" />
-
-    <android.support.v7.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvHeaderChampion"
-        android:background="@color/colorPrimaryDark"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:queryHint="@string/search_contact" />
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:src="@drawable/lol"
+        android:background="@color/colorPrimary"/>
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvChampion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchView"
+        android:layout_below="@id/ivLogo"
         android:background="@color/dimGrey"
         android:paddingTop="10dp"
 

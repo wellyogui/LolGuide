@@ -3,9 +3,11 @@ package com.example.wellington.lolguide.view.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
@@ -21,7 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionMenu fab;
 
     MyPageAdapterMain mpAdapter;
+    private SearchView searchView;
 
 
     @Override
@@ -108,14 +111,53 @@ public class MainActivity extends AppCompatActivity {
 
     //endregion
 
+    //region [SearchView]
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_header, menu);
 
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setQueryHint("Buscar");
+        searchView.setOnQueryTextListener(this);
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSearchMenu();
+            }
+        });
+
 
         return true;
+
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
+
+    //endregion
+
+    private void openSearchMenu() {
+        fab.setVisibility(View.GONE);
+
+    }
+
+    public void openMenu(){
+        fab.setVisibility(View.VISIBLE);
+    }
+
+
 
     public void callDetails(String id) {
 
