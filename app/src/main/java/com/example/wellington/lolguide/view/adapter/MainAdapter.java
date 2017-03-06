@@ -27,7 +27,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterVie
 
 
     public interface OnObjectClickListener {
-        void OnObjectClickListener(ObjectAdapter objectAdapter);
+        void OnObjectClickListener(ObjectAdapter objectAdapter, ImageView ivBorder, ImageView ivPortrait);
+
     }
 
 
@@ -78,19 +79,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterVie
 
         public TextView tvNameText;
         public ImageView ivRetrato;
+        public ImageView ivBorder;
 
         public MainAdapterViewHolder(View itemView) {
             super(itemView);
 
             this.tvNameText = (TextView) itemView.findViewById(R.id.tvNameText);
             this.ivRetrato = (ImageView) itemView.findViewById(R.id.ivImagePortrait);
+            this.ivBorder = (ImageView) itemView.findViewById(R.id.ivBorderProtrait);
         }
 
         public void bind(final ObjectAdapter objectAdapterListItem, final OnObjectClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.OnObjectClickListener(objectAdapterListItem);
+                    listener.OnObjectClickListener(objectAdapterListItem, ivBorder, ivRetrato);
                 }
             });
         }
@@ -102,7 +105,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterVie
 //        for (ObjectAdapter championDto : mObjecterList) {
 //            if (championDto.championDto != null) {
 //                if (championDto.championDto.tags != null) {
-//                    if (!championDto.championDto.tags.contains(filter)) {
+//                    if (!championDto.championDto.tags.contains(filterChamp)) {
 //                        mObjecterList.remove(championDto);
 //                    }
 //                }

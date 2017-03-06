@@ -3,11 +3,16 @@ package com.example.wellington.lolguide.view.ui.details;
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.TransitionInflater;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.wellington.lolguide.R;
@@ -34,16 +39,19 @@ public class ChampionDetail extends AppCompatActivity {
     //region [Bind Principal Info]
     @Bind(R.id.ivPortrait)
     ImageView ivPortrait;
+    @Bind(R.id.ivBorderProtraitDetail)
+    ImageView ivBorder;
     @Bind(R.id.tvNameChampion)
     TextView tvNameChampion;
     @Bind(R.id.tvTitleChampion)
     TextView tvTitleChampion;
+    @Bind(R.id.llPrincipal)
+    LinearLayout linearLayoutPrincipal;
     //endregion
 
     //region [Bind Tags]
     @Bind(R.id.tvTag)
     TextView tvTag;
-
     //endregion
 
     //region [Bind TabLayout]
@@ -60,14 +68,34 @@ public class ChampionDetail extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
+        getWindow().setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.transition));
+
+
         getDetails();
 
-
+        setSwipe();
     }
 
-    public void getDetails(){
+    private void setSwipe() {
+        View myView = findViewById(R.id.llPrincipal);
+        myView.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = MotionEventCompat.getActionMasked(event);
+                switch (action) {
+                    case (MotionEvent.ACTION_DOWN):
+                        onBackPressed();
+                        return true;
+                    default:
+                        return true;
+                }
+            }
+        });
+    }
+
+
+    public void getDetails() {
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
+        if (bundle != null) {
             String id = bundle.getString(ObjectAdapter.ID);
             championPresenter = new ChampionPresenter();
 
@@ -97,7 +125,7 @@ public class ChampionDetail extends AppCompatActivity {
 
     }
 
-    public void setChampionDetails(ChampionDto championDto){
+    public void setChampionDetails(ChampionDto championDto) {
 
         setTabs(championDto);
 
@@ -121,21 +149,17 @@ public class ChampionDetail extends AppCompatActivity {
             mTag += tag + "/";
 
 
+        }
 
-            }
-
-        mTag = mTag.substring(0, mTag.length()-1);
+        mTag = mTag.substring(0, mTag.length() - 1);
 
         tvTag.setText(mTag);
 
-        }
-
-
-
+    }
 
 
     public void setTabs(ChampionDto championdto) {
-         FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         tabLayout.removeAllTabs();
 

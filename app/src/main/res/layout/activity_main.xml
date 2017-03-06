@@ -11,6 +11,8 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:visibility="visible"
+        android:background="@color/colorPrimaryDark"
         android:layout_height="?attr/actionBarSize"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -30,7 +32,7 @@
         android:id="@+id/viewpager_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/sliding_tabs_main" />
+        android:layout_below="@+id/toolbar" />
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu"

@@ -8,5 +8,6 @@
     <string name="text_inside_circle_button_text_unable">teste_unable</string>
     <string name="search_contact">Pesquisar</string>
     <string name="action_search">Busca</string>
+    <string name="level" formatted="false">LEVEL: %d</string>
 
 </resources>

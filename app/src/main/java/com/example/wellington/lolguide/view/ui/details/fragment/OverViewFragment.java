@@ -1,5 +1,6 @@
 package com.example.wellington.lolguide.view.ui.details.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.nfc.Tag;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.wellington.lolguide.R;
@@ -24,6 +26,7 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.BindString;
 import butterknife.ButterKnife;
 
 
@@ -94,10 +97,18 @@ public class OverViewFragment extends Fragment {
     TextView tvSpelllBlock;
     @Bind(R.id.tvSpellBlockPerLevel)
     TextView tvSpellBlockPerLevel;
+    @Bind(R.id.sbLevel)
+    SeekBar seekBar;
+    @Bind(R.id.tvLevel)
+    TextView tvLevel;
+    @BindString(R.string.level)
+    String levelString;
     //endregion
 
 
     private View view;
+    private Stats stats;
+    private Info info;
 
     public OverViewFragment() {
         // Required empty public constructor
@@ -113,18 +124,19 @@ public class OverViewFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            Info info = (Info) bundle.getSerializable(INFO);
-            getInfo(info);
+            info = (Info) bundle.getSerializable(INFO);
+            getInfo();
 
-            Stats stats = (Stats) bundle.getSerializable(STATS);
-            getStats(stats);
+            stats = (Stats) bundle.getSerializable(STATS);
+            getStats();
 
+            setLevelSeekBar();
         }
 
         return view;
     }
 
-    public void getInfo(Info info) {
+    public void getInfo() {
 
         tvAtaque.setText(String.valueOf(info.attack));
         tvDefesa.setText(String.valueOf(info.defense));
@@ -143,41 +155,83 @@ public class OverViewFragment extends Fragment {
 
     }
 
-    public void getStats(Stats stats) {
+    public void getStats() {
 
-        tvHp.setText(String.valueOf(stats.hp));
+        updateLevel(0);
+
         tvHpPerLevel.setText("(+ " + String.valueOf(stats.hpperlevel) + " por level)");
 
-        tvHpRegen.setText(String.valueOf(stats.hpregen));
         tvHpRegenPerLevel.setText("(+ " + String.valueOf(stats.hpregenperlevel) + " por level)");
 
-        tvArmadura.setText(String.valueOf(stats.armor));
         tvArmaduraPerLevel.setText("(+ " + String.valueOf(stats.armorperlevel) + " por level)");
 
-        tvDanoAtaque.setText(String.valueOf(stats.attackdamage));
         tvDanoAtaquePerLevel.setText("(+ " + String.valueOf(stats.attackdamageperlevel) + " por level)");
 
-        tvVelocidadeAtaque.setText(String.valueOf(stats.attackspeedoffset));
         tvVelocidadeAtaquePerLevel.setText("(+ " + String.valueOf(stats.attackspeedperlevel) + " por level)");
 
         tvAlcance.setText(String.valueOf(stats.attackrange));
 
-        tvAtaqueCritico.setText(String.valueOf(stats.crit));
         tvAtaqueCriticoPerLevel.setText("(+ " + String.valueOf(stats.critperlevel) + " por level)");
 
         tvMovemetntacao.setText(String.valueOf(stats.movespeed));
 
-        tvMp.setText(String.valueOf(stats.mp));
         tvMpPerLevel.setText("(+ " + String.valueOf(stats.mpperlevel) + " por level)");
 
-        tvMpRegen.setText(String.valueOf(stats.mpregen));
         tvMpRegenPerLevel.setText("(+ " + String.valueOf(stats.mpregenperlevel) + " por level)");
 
-        tvSpelllBlock.setText(String.valueOf(stats.spellblock));
         tvSpellBlockPerLevel.setText("(+ " + String.valueOf(stats.spellblockperlevel) + " por level)");
+
 
     }
 
+    @SuppressLint("DefaultLocale")
+    private void updateLevel(int level){
+
+        tvHp.setText(String.format("%.2f", (stats.hp + stats.hpperlevel * level)));
+
+        tvHpRegen.setText(String.format("%.2f", (stats.hpregen + stats.hpregenperlevel * level)));
+
+        tvArmadura.setText(String.format("%.2f", (stats.armor + stats.armorperlevel * level)));
+
+        tvDanoAtaque.setText(String.format("%.2f", (stats.attackdamage + stats.attackdamageperlevel * level)));
+
+        tvVelocidadeAtaque.setText(String.format("%.2f", (stats.attackspeedoffset + stats.attackspeedperlevel * level)));
+
+        tvAtaqueCritico.setText(String.format("%.2f", (stats.crit + stats.critperlevel * level)));
+
+        tvMp.setText(String.format("%.2f", (stats.mp + stats.mpperlevel * level)));
+
+        tvMpRegen.setText(String.format("%.2f", (stats.mpregen + stats.mpregenperlevel * level)));
+
+        tvSpelllBlock.setText(String.format("%.2f", (stats.spellblock + stats.spellblockperlevel * level)));
+
+
+    }
+
+    private void setLevelSeekBar(){
+
+        tvLevel.setText(String.format(levelString, 1));
+
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvLevel.setText(String.format(levelString, progress+1));
+
+                updateLevel(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
 
 }
 

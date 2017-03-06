@@ -85,7 +85,7 @@ public class ChampionPresenter {
                 });
     }
 
-    public List<ChampionDto> filterList(List<ChampionDto> championList, ChampionEnum championEnum) {
+    public List<ChampionDto> filterTag(List<ChampionDto> championList, ChampionEnum championEnum) {
 
         List<ChampionDto> filterChamp = new ArrayList<>();
 
@@ -107,6 +107,26 @@ public class ChampionPresenter {
         }
 
         return filterChamp;
+
+    }
+
+    public List<ChampionDto> filterName(List<ChampionDto> championDtos, String nameChampion) {
+
+        List<ChampionDto> filterName = new ArrayList<>();
+
+        if (championDtos != null && championDtos.size() > 0) {
+            for (ChampionDto champions : championDtos) {
+                if (champions.name != null && champions.name.length() > 0) {
+                    if (champions.name.toLowerCase().contains(nameChampion.toLowerCase())) {
+                        filterName.add(champions);
+
+                    }
+                }
+
+            }
+        }
+
+        return filterName;
 
     }
 

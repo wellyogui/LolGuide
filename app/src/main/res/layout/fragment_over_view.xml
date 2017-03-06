@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:background="@color/blue"
     tools:context="com.example.wellington.lolguide.view.ui.details.fragment.OverViewFragment">
 
     <LinearLayout
@@ -385,6 +386,29 @@
                         style="@style/fontText"
                         android:paddingLeft="10dp"
                         android:text="(+ por level)" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:id="@+id/tvLevel"
+                        style="@style/fontSubTitle"
+                        android:text="@string/level"
+                        />
+
+                    <SeekBar
+                        android:id="@+id/sbLevel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="17"
+                        android:progress="0"/>
 
                 </LinearLayout>
 

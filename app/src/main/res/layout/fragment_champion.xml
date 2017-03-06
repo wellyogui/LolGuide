@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:src="@drawable/lol"
-        android:background="@color/colorPrimary"/>
+        android:visibility="gone"/>
 
 
     <android.support.v7.widget.RecyclerView
@@ -21,7 +21,7 @@
         android:layout_below="@id/ivLogo"
         android:background="@color/dimGrey"
         android:paddingTop="10dp"
-
+        android:layout_marginTop="70dp"
         />
 
 </RelativeLayout>

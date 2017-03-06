@@ -28,6 +28,10 @@ public interface LolApi {
                                      @Query("champData") String champData,
                                      @Query("api_key") String key);
 
+//    @GET("/api/lol/{region}/v1.2/champion")
+//      Observable<Champion> getFreeRoation
+
+
     @GET("/api/lol/static-data/{region}/v1.2/champion/")
     Observable<Champion> getChampionList(@Path("region") String region,
                                             @Query("champData") String champData,

@@ -1,9 +1,10 @@
 package com.example.wellington.lolguide.view.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.ChampionEnum;
@@ -23,7 +25,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -34,7 +36,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Bind(R.id.menu)
     FloatingActionMenu fab;
 
-    MyPageAdapterMain mpAdapter;
+    Context context;
+
+    private MyPageAdapterMain mpAdapter;
     private SearchView searchView;
 
 
@@ -76,37 +80,41 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @OnClick(R.id.tank)
     public void filterTank() {
-        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.TANK);
+        ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.TANK);
     }
 
     @OnClick(R.id.mage)
     public void filterMage() {
-        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.MAGE);
+        ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.MAGE);
     }
 
     @OnClick(R.id.marskman)
     public void filterMarskman() {
-        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.MARKSMAN);
+        ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.MARKSMAN);
     }
 
     @OnClick(R.id.support)
     public void filterSupport() {
-        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.SUPPORT);
+        ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.SUPPORT);
     }
 
     @OnClick(R.id.fighter)
     public void filterFigher() {
-        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.FIGHTER);
+        ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.FIGHTER);
     }
 
     @OnClick(R.id.assassin)
     public void filterAssisn() {
-        ((ChampionFragment) mpAdapter.getItem(0)).filter(ChampionEnum.ASSASSIN);
+        ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.ASSASSIN);
     }
 
     @OnClick(R.id.remove)
     public void filterRemove() {
         ((ChampionFragment) mpAdapter.getItem(0)).nonFilter();
+
+        ((ChampionFragment) mpAdapter.getItem(0)).cleanChampFilter();
+
+
     }
 
     //endregion
@@ -118,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         getMenuInflater().inflate(R.menu.menu_header, menu);
 
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+
+
         searchView.setQueryHint("Buscar");
         searchView.setOnQueryTextListener(this);
 
@@ -128,6 +138,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         });
 
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                closeSearchMenu();
+                ((ChampionFragment) mpAdapter.getItem(0)).resetChampionList();
+                return false;
+            }
+        });
 
         return true;
 
@@ -136,13 +154,19 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextSubmit(String query) {
 
-
+        if(query.length() > 0){
+            ((ChampionFragment) mpAdapter.getItem(0)).filterName(query);
+        } else {
+            ((ChampionFragment) mpAdapter.getItem(0)).resetChampionList();
+        }
 
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
+
+
         return false;
     }
 
@@ -153,13 +177,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     }
 
-    public void openMenu(){
+    public void closeSearchMenu() {
         fab.setVisibility(View.VISIBLE);
     }
 
 
-
-    public void callDetails(String id) {
+    public void callDetails(String id, ActivityOptionsCompat activityOptionsCompat) {
 
         Intent intent = new Intent(MainActivity.this, ChampionDetail.class);
 
@@ -167,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         bundle.putString(ObjectAdapter.ID, id);
 
         intent.putExtras(bundle);
-        startActivity(intent);
+        startActivity(intent, activityOptionsCompat.toBundle());
 
     }
 

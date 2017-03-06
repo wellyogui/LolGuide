@@ -1,7 +1,9 @@
 package com.example.wellington.lolguide.view.ui.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,7 +31,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class ChampionFragment extends Fragment  {
+public class ChampionFragment extends Fragment {
 
     public static final String CHAMPION = "champion";
 
@@ -40,6 +42,7 @@ public class ChampionFragment extends Fragment  {
     private List<ObjectAdapter> list = new ArrayList<>();
     private List<ChampionDto> champList = new ArrayList<>();
     private List<ChampionDto> filterChamp = new ArrayList<>();
+    private List<ChampionDto> filterName = new ArrayList<>();
 
     private String region = "br";
     //endregion
@@ -102,7 +105,6 @@ public class ChampionFragment extends Fragment  {
 
     public void closeLogo() {
         ivLogo.setVisibility(View.GONE);
-
     }
 
     public void displayChampionList(List<ObjectAdapter> championList) {
@@ -110,10 +112,16 @@ public class ChampionFragment extends Fragment  {
         sort();
         mainAdapter = new MainAdapter(getActivity(), list, new MainAdapter.OnObjectClickListener() {
             @Override
-            public void OnObjectClickListener(ObjectAdapter objectAdapter) {
+            public void OnObjectClickListener(ObjectAdapter objectAdapter,ImageView ivBorder,ImageView ivPortrait) {
                 Toast.makeText(getActivity(), "Object Adapter" + objectAdapter.Id, Toast.LENGTH_SHORT).show();
 
-                ((MainActivity) getActivity()).callDetails(objectAdapter.Id);
+                Pair<View, String> pair1 = Pair.create((View) ivBorder, ivBorder.getTransitionName());
+                Pair<View, String> pair2 = Pair.create((View) ivPortrait, ivPortrait.getTransitionName());
+
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), pair1, pair2);
+
+
+                ((MainActivity) getActivity()).callDetails(objectAdapter.Id, optionsCompat);
             }
         });
 
@@ -122,6 +130,13 @@ public class ChampionFragment extends Fragment  {
 
         mainAdapter.notifyDataSetChanged();
 
+    }
+
+    public void resetChampionList(){
+
+        List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(champList);
+
+        displayChampionList(champFilter);
     }
 
     public void sort() {
@@ -140,13 +155,30 @@ public class ChampionFragment extends Fragment  {
 
     }
 
-    public void filter(ChampionEnum championEnum) {
+    public void filterChamp(ChampionEnum championEnum) {
 
-        filterChamp = championPresenter.filterList(champList, championEnum);
+        filterChamp = championPresenter.filterTag(champList, championEnum);
 
         List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(filterChamp);
 
         displayChampionList(champFilter);
+
+    }
+
+    public void filterName(String champName) {
+
+        filterName = championPresenter.filterName(filterChamp != null && filterChamp.size() > 0 ?
+                filterChamp : champList, champName);
+
+        List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(filterName);
+
+        displayChampionList(champFilter);
+
+    }
+
+    public void cleanChampFilter(){
+
+        filterChamp.clear();
 
     }
 

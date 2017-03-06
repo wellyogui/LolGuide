@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/llPrincipal"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/dimGrey"
@@ -25,16 +26,19 @@
                 android:layout_marginLeft="15dp">
 
                 <ImageView
+                    android:id="@+id/ivBorderProtraitDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/retrato" />
+                    android:src="@drawable/retrato"
+                    android:transitionName="transitionBorder" />
 
                 <ImageView
                     android:id="@+id/ivPortrait"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_centerInParent="true"
-                    android:src="@mipmap/ic_launcher" />
+                    tools:src="@mipmap/ic_launcher"
+                    android:transitionName="transitionPortrait" />
 
             </RelativeLayout>
 
@@ -98,8 +102,8 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager_main"
             android:layout_width="match_parent"
-            android:background="@color/dimGrey"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/dimGrey" />
 
     </LinearLayout>
 
