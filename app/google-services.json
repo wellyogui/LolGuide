@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "550605368533",
+    "firebase_url": "https://guia-dos-campeoes.firebaseio.com",
+    "project_id": "guia-dos-campeoes",
+    "storage_bucket": "guia-dos-campeoes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550605368533:android:9e87e8fe3c585ff7",
+        "android_client_info": {
+          "package_name": "com.example.wellington.lolguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550605368533-bofq7kd3h96olo7ut5mj87frlu1srci6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoZNJlTjgn1_C5X4E7D7KJJTC6LPFGphM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
