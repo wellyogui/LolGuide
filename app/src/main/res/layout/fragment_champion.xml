@@ -9,9 +9,15 @@
     <ImageView
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:src="@drawable/lol"
-        android:visibility="gone"/>
+        android:layout_height="130dp"
+        android:background="@drawable/bg_top"
+        android:visibility="visible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_main"
+        android:layout_centerHorizontal="true"/>
 
 
     <android.support.v7.widget.RecyclerView
@@ -19,9 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/ivLogo"
-        android:background="@color/dimGrey"
-        android:paddingTop="10dp"
-        android:layout_marginTop="70dp"
-        />
+        android:background="@drawable/img_fundo"
+        android:paddingTop="10dp" />
 
 </RelativeLayout>

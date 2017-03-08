@@ -8,12 +8,12 @@
     android:layout_height="match_parent"
     tools:context=".view.ui.MainActivity">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:visibility="visible"
-        android:background="@color/colorPrimaryDark"
         android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 
@@ -34,26 +34,28 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar" />
 
+
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         fab:menu_animationDelayPerItem="50"
-        fab:menu_backgroundColor="#9900001A"
+        fab:menu_backgroundColor="#B300001A"
         fab:menu_buttonSpacing="0dp"
-        fab:menu_colorNormal="#DA4336"
-        fab:menu_colorPressed="#E75043"
+        fab:menu_colorNormal="#cc9900"
+        fab:menu_colorPressed="#cc9900"
         fab:menu_colorRipple="#99FFFFFF"
         fab:menu_fab_label="Filtro"
         fab:menu_fab_size="normal"
-        fab:menu_icon="@drawable/ic_menu"
+        fab:menu_icon="@mipmap/ic_menu"
         fab:menu_labels_colorNormal="#333333"
         fab:menu_labels_colorPressed="#444444"
         fab:menu_labels_colorRipple="#66FFFFFF"
         fab:menu_labels_cornerRadius="3dp"
         fab:menu_labels_ellipsize="none"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
         fab:menu_labels_margin="0dp"
         fab:menu_labels_maxLines="-1"
         fab:menu_labels_padding="8dp"
@@ -62,7 +64,6 @@
         fab:menu_labels_paddingRight="8dp"
         fab:menu_labels_paddingTop="4dp"
         fab:menu_labels_position="right"
-        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
         fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
         fab:menu_labels_showShadow="true"
         fab:menu_labels_singleLine="false"
@@ -79,7 +80,9 @@
             android:id="@+id/az"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_az"
+            android:src="@mipmap/ic_az"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
             fab:fab_label="Ordem Alfabetica"
             fab:fab_size="mini" />
 
@@ -87,57 +90,81 @@
             android:id="@+id/tank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
+            android:src="@mipmap/ic_tank"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
             fab:fab_label="Tanque"
-            android:src="@drawable/ic_tank"/>
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fighter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
+            android:src="@mipmap/ic_fighter"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
             fab:fab_label="Lutador"
-            android:src="@drawable/ic_fighter"/>
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/marskman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
+            android:src="@mipmap/ic_adc"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
             fab:fab_label="Atirador"
-            android:src="@drawable/ic_adc"/>
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/assassin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
+            android:src="@mipmap/ic_assassin"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
             fab:fab_label="Assassino"
-            android:src="@drawable/ic_assassin"/>
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/support"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
+            android:src="@mipmap/ic_support"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
             fab:fab_label="Suporte"
-            android:src="@drawable/ic_support"/>
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/mage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
+            android:src="@mipmap/ic_mage"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
             fab:fab_label="Mago"
-            android:src="@drawable/ic_mage"/>
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/freeToPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_my_calendar"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
+            fab:fab_label="Free Week"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/remove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
+            android:src="@mipmap/ic_nonfilter"
+            fab:fab_colorNormal="#cc9900"
+            fab:fab_colorPressed="#cc9900"
             fab:fab_label="Limpar Filtro"
-            android:src="@drawable/ic_nonfilter"/>
+            fab:fab_size="mini" />
 
 
     </com.github.clans.fab.FloatingActionMenu>

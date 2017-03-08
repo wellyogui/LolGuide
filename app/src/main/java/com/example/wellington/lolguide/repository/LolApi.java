@@ -2,6 +2,8 @@ package com.example.wellington.lolguide.repository;
 
 import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
+import com.example.wellington.lolguide.model.champion.ChampionFree;
+import com.example.wellington.lolguide.model.champion.ChampionFreeList;
 import com.example.wellington.lolguide.model.item.Item;
 import com.example.wellington.lolguide.model.spell.Spell;
 import com.example.wellington.lolguide.model.spell.SummonerSpellDto;
@@ -28,8 +30,10 @@ public interface LolApi {
                                      @Query("champData") String champData,
                                      @Query("api_key") String key);
 
-//    @GET("/api/lol/{region}/v1.2/champion")
-//      Observable<Champion> getFreeRoation
+    @GET("/api/lol/{region}/v1.2/champion")
+      Observable<ChampionFreeList> getFreeRotation(@Path("region") String region,
+                                                   @Query("freeToPlay") String freeToPlay,
+                                                   @Query("api_key") String key);
 
 
     @GET("/api/lol/static-data/{region}/v1.2/champion/")

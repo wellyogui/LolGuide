@@ -56,7 +56,6 @@ public class MyPageAdapter extends FragmentStatePagerAdapter {
             case 4:
                 fragment = new SkinFragment();
                 bundle.putSerializable(SkinFragment.SKIN, (Serializable) this.championDto.skins);
-                bundle.putString(SkinFragment.NAMECH, this.championDto.name);
                 break;
 
             default:

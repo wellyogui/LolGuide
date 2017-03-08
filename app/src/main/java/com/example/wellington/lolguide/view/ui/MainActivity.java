@@ -12,7 +12,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.ChampionEnum;
@@ -20,6 +20,7 @@ import com.example.wellington.lolguide.model.ObjectAdapter;
 import com.example.wellington.lolguide.view.ui.details.ChampionDetail;
 import com.example.wellington.lolguide.view.ui.fragment.ChampionFragment;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.android.gms.ads.InterstitialAd;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     Context context;
 
+    private InterstitialAd mInterstitialAd;
     private MyPageAdapterMain mpAdapter;
     private SearchView searchView;
 
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("");
         }
+        toolbar.setTitleMarginTop(20);
 
         setTabs();
 
@@ -71,41 +74,56 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     }
 
-    //region [OnClick]
+    //region [FAB]
 
     @OnClick(R.id.az)
     public void ordenarAZ() {
+
         ((ChampionFragment) mpAdapter.getItem(0)).reverse();
+        fab.close(true);
+
     }
 
     @OnClick(R.id.tank)
     public void filterTank() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.TANK);
+
+        fab.close(true);
     }
 
     @OnClick(R.id.mage)
     public void filterMage() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.MAGE);
+
+        fab.close(true);
     }
 
     @OnClick(R.id.marskman)
     public void filterMarskman() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.MARKSMAN);
+
+        fab.close(true);
     }
 
     @OnClick(R.id.support)
     public void filterSupport() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.SUPPORT);
+
+        fab.close(true);
     }
 
     @OnClick(R.id.fighter)
     public void filterFigher() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.FIGHTER);
+
+        fab.close(true);
     }
 
     @OnClick(R.id.assassin)
     public void filterAssisn() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.ASSASSIN);
+
+        fab.close(true);
     }
 
     @OnClick(R.id.remove)
@@ -114,7 +132,17 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         ((ChampionFragment) mpAdapter.getItem(0)).cleanChampFilter();
 
+        fab.close(true);
 
+
+    }
+
+    @OnClick(R.id.freeToPlay)
+    public void filterFree() {
+
+        ((ChampionFragment) mpAdapter.getItem(0)).freeWeek();
+
+        fab.close(true);
     }
 
     //endregion
@@ -126,6 +154,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         getMenuInflater().inflate(R.menu.menu_header, menu);
 
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+
+        int searchImgId = android.support.v7.appcompat.R.id.search_button;
+        ImageView v = (ImageView) searchView.findViewById(searchImgId);
+        v.setImageResource(R.drawable.bt_search);
+
+        int searchCloseImgId = android.support.v7.appcompat.R.id.search_close_btn;
+        ImageView vClose = (ImageView) searchView.findViewById(searchCloseImgId);
+        vClose.setImageResource(R.drawable.bt_close);
 
 
         searchView.setQueryHint("Buscar");
@@ -154,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextSubmit(String query) {
 
-        if(query.length() > 0){
+        if (query.length() > 0) {
             ((ChampionFragment) mpAdapter.getItem(0)).filterName(query);
         } else {
             ((ChampionFragment) mpAdapter.getItem(0)).resetChampionList();

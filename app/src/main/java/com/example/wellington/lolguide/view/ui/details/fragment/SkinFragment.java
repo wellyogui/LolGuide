@@ -7,12 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.model.champion.Skin;
+import com.example.wellington.lolguide.utils.AppConfigs;
+import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -21,11 +25,14 @@ import butterknife.ButterKnife;
 public class SkinFragment extends Fragment {
 
     public static final String SKIN = "skins";
-    public static final String NAMECH = "championName";
 
     private Context mContext;
 
     private View view;
+    private Skin mSkin;
+
+    @Bind(R.id.ivSkin1)
+    ImageView ivSkin1;
 
     public SkinFragment() {
         // Required empty public constructor
@@ -41,7 +48,8 @@ public class SkinFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null){
-
+//            mSkin = (Skin) bundle.getSerializable(SKIN);
+//            getSkins(mSkin);
         }
 
         return view;
@@ -49,6 +57,9 @@ public class SkinFragment extends Fragment {
     }
 
     public void getSkins(Skin skin){
+
+        Picasso.with(getActivity()).load(String.format(AppConfigs.skinsImage, "Aatrox", skin.num)).into(ivSkin1);
+
 
     }
 

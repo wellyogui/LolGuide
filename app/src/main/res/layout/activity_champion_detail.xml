@@ -37,7 +37,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_centerInParent="true"
-                    tools:src="@mipmap/ic_launcher"
+                    tools:src="@mipmap/ic_nonfilter"
                     android:transitionName="transitionPortrait" />
 
             </RelativeLayout>

@@ -16,7 +16,10 @@ import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.ChampionEnum;
 import com.example.wellington.lolguide.model.ObjectAdapter;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
+import com.example.wellington.lolguide.model.champion.ChampionFree;
+import com.example.wellington.lolguide.model.champion.ChampionFreeList;
 import com.example.wellington.lolguide.presenter.ChampionPresenter;
+import com.example.wellington.lolguide.repository.contracts.ChampFreeListListener;
 import com.example.wellington.lolguide.repository.contracts.ChampionListListener;
 import com.example.wellington.lolguide.utils.AppConfigs;
 import com.example.wellington.lolguide.view.adapter.MainAdapter;
@@ -179,6 +182,35 @@ public class ChampionFragment extends Fragment {
     public void cleanChampFilter(){
 
         filterChamp.clear();
+
+    }
+
+    public void freeWeek(){
+
+        championPresenter.loadChampionFree(region, AppConfigs.api_key, new ChampFreeListListener() {
+            @Override
+            public void onChampionFreeLoad(ChampionFreeList championFreeList) {
+                filterChamp = championPresenter.findFreeChampions(champList, championFreeList.champions);
+
+                List<ObjectAdapter> champFreeFilter = ObjectAdapter.convertChampionToObject(filterChamp);
+                displayChampionList(champFreeFilter);
+            }
+
+            @Override
+            public void onRequestStarted() {
+
+            }
+
+            @Override
+            public void onRequestFinished() {
+
+            }
+
+            @Override
+            public void onError(Throwable error) {
+
+            }
+        });
 
     }
 

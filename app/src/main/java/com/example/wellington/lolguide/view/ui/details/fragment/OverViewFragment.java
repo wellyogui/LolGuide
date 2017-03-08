@@ -1,5 +1,6 @@
 package com.example.wellington.lolguide.view.ui.details.fragment;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
@@ -10,6 +11,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -136,6 +140,18 @@ public class OverViewFragment extends Fragment {
         return view;
     }
 
+    private void animateProgress(ProgressBar progressBar, int progressValue) {
+        progressValue *= 2;
+        if (progressValue < 0) {
+            progressValue = 0;
+        }
+        int animTime = 500;
+        ObjectAnimator anim = ObjectAnimator.ofInt(progressBar, "progress", progressBar.getProgress(), progressValue);
+        anim.setDuration(animTime);
+        anim.setInterpolator(new LinearInterpolator());
+        anim.start();
+    }
+
     public void getInfo() {
 
         tvAtaque.setText(String.valueOf(info.attack));
@@ -143,14 +159,19 @@ public class OverViewFragment extends Fragment {
         tvMagica.setText(String.valueOf(info.magic));
         tvDificuldade.setText(String.valueOf(info.difficulty));
 
-        progressBarAt.setMax(10);
-        progressBarAt.setProgress(info.attack);
-        progressBarDe.setMax(10);
-        progressBarDe.setProgress(info.defense);
-        progressBarMa.setMax(10);
-        progressBarMa.setProgress(info.magic);
-        progressBarDi.setMax(10);
-        progressBarDi.setProgress(info.difficulty);
+//        progressBarAt.setProgress(info.attack);
+        animateProgress(progressBarAt, info.attack);
+
+//        progressBarDe.setProgress(info.defense);
+        animateProgress(progressBarDe, info.difficulty);
+
+
+//        progressBarMa.setProgress(info.magic);
+        animateProgress(progressBarMa, info.magic);
+
+
+//        progressBarDi.setProgress(info.difficulty);
+        animateProgress(progressBarDi, info.difficulty);
 
 
     }
@@ -185,7 +206,7 @@ public class OverViewFragment extends Fragment {
     }
 
     @SuppressLint("DefaultLocale")
-    private void updateLevel(int level){
+    private void updateLevel(int level) {
 
         tvHp.setText(String.format("%.2f", (stats.hp + stats.hpperlevel * level)));
 
@@ -208,7 +229,7 @@ public class OverViewFragment extends Fragment {
 
     }
 
-    private void setLevelSeekBar(){
+    private void setLevelSeekBar() {
 
         tvLevel.setText(String.format(levelString, 1));
 
@@ -216,7 +237,7 @@ public class OverViewFragment extends Fragment {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvLevel.setText(String.format(levelString, progress+1));
+                tvLevel.setText(String.format(levelString, progress + 1));
 
                 updateLevel(progress);
             }

@@ -3,13 +3,17 @@ package com.example.wellington.lolguide.presenter;
 import com.example.wellington.lolguide.model.ChampionEnum;
 import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
+import com.example.wellington.lolguide.model.champion.ChampionFree;
+import com.example.wellington.lolguide.model.champion.ChampionFreeList;
 import com.example.wellington.lolguide.repository.CLolApi;
+import com.example.wellington.lolguide.repository.contracts.ChampFreeListListener;
 import com.example.wellington.lolguide.repository.contracts.ChampionDetailListener;
 import com.example.wellington.lolguide.repository.contracts.ChampionListListener;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -85,6 +89,32 @@ public class ChampionPresenter {
                 });
     }
 
+    public void loadChampionFree(String region, String key, final ChampFreeListListener listener) {
+        listener.onRequestStarted();
+
+        lolApi.getmLolApi()
+                .getFreeRotation(region, "true", key)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ChampionFreeList>() {
+                    @Override
+                    public void onCompleted() {
+                        listener.onRequestFinished();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        listener.onRequestFinished();
+                        listener.onError(e);
+                    }
+
+                    @Override
+                    public void onNext(ChampionFreeList champion) {
+                        listener.onChampionFreeLoad(champion);
+                    }
+                });
+    }
+
     public List<ChampionDto> filterTag(List<ChampionDto> championList, ChampionEnum championEnum) {
 
         List<ChampionDto> filterChamp = new ArrayList<>();
@@ -109,6 +139,24 @@ public class ChampionPresenter {
         return filterChamp;
 
     }
+
+    public List<ChampionDto> findFreeChampions(List<ChampionDto> championDtoList, List<ChampionFree> championFreeList) {
+        List<ChampionDto> filterChamp = new ArrayList<>();
+
+        for (ChampionFree championFree : championFreeList) {
+            for (ChampionDto championDto : championDtoList) {
+                if (Objects.equals(championDto.id, championFree.id)) {
+
+                    filterChamp.add(championDto);
+                    break;
+
+                }
+            }
+        }
+
+        return filterChamp;
+    }
+
 
     public List<ChampionDto> filterName(List<ChampionDto> championDtos, String nameChampion) {
 
