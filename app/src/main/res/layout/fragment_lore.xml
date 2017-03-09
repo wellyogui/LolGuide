@@ -1,10 +1,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dimGrey"
     tools:context="com.example.wellington.lolguide.view.ui.details.fragment.LoreFragment">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,16 +13,35 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            app:cardBackgroundColor="@color/cardview_dark_background"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="4dp"
+            card_view:contentPadding="15dp">
 
-        <TextView
-            style="@style/fontTitleStyle"
-            android:text="Lore: "
-            />
 
-        <TextView
-            android:id="@+id/tvLore"
-            style="@style/fontText"
-            android:text="texto" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    style="@style/fontTitleStyle"
+                    android:text="Lore: " />
+
+                <TextView
+                    android:id="@+id/tvLore"
+                    style="@style/fontText"
+                    android:text="texto" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
 
     </LinearLayout>
 
