@@ -25,6 +25,7 @@ import com.example.wellington.lolguide.utils.AppConfigs;
 import com.example.wellington.lolguide.view.adapter.MainAdapter;
 import com.example.wellington.lolguide.view.ui.MainActivity;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -101,21 +102,20 @@ public class ChampionFragment extends Fragment {
 
             @Override
             public void onError(Throwable error) {
-
+                if(error instanceof UnknownHostException){
+                    Toast.makeText(getActivity(), "Sem conexão com a internet", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
 
-    public void closeLogo() {
-        ivLogo.setVisibility(View.GONE);
-    }
 
     public void displayChampionList(List<ObjectAdapter> championList) {
         list = championList;
         sort();
         mainAdapter = new MainAdapter(getActivity(), list, new MainAdapter.OnObjectClickListener() {
             @Override
-            public void OnObjectClickListener(ObjectAdapter objectAdapter,ImageView ivBorder,ImageView ivPortrait) {
+            public void OnObjectClickListener(ObjectAdapter objectAdapter, ImageView ivBorder, ImageView ivPortrait) {
                 Toast.makeText(getActivity(), "Object Adapter" + objectAdapter.Id, Toast.LENGTH_SHORT).show();
 
                 Pair<View, String> pair1 = Pair.create((View) ivBorder, ivBorder.getTransitionName());
@@ -135,7 +135,7 @@ public class ChampionFragment extends Fragment {
 
     }
 
-    public void resetChampionList(){
+    public void resetChampionList() {
 
         List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(champList);
 
@@ -179,13 +179,13 @@ public class ChampionFragment extends Fragment {
 
     }
 
-    public void cleanChampFilter(){
+    public void cleanChampFilter() {
 
         filterChamp.clear();
 
     }
 
-    public void freeWeek(){
+    public void freeWeek() {
 
         championPresenter.loadChampionFree(region, AppConfigs.api_key, new ChampFreeListListener() {
             @Override
@@ -211,6 +211,16 @@ public class ChampionFragment extends Fragment {
 
             }
         });
+
+    }
+
+    public void showLogo() {
+        ivLogo.setVisibility(View.VISIBLE);
+    }
+
+    public void hideLogo() {
+
+        ivLogo.setVisibility(View.GONE);
 
     }
 

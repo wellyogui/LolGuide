@@ -1,14 +1,9 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rlSkin"
     android:background="@color/dimGrey"
     tools:context="com.example.wellington.lolguide.view.ui.details.fragment.SkinFragment">
 
-    <ImageView
-        android:id="@+id/ivSkin1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_app"/>
-
-</ScrollView>
+</android.support.v7.widget.RecyclerView>

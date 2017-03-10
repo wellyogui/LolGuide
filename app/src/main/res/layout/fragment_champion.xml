@@ -7,13 +7,14 @@
 
 
     <ImageView
-        android:id="@+id/ivLogo"
+        android:id="@+id/ivLogoBg"
         android:layout_width="wrap_content"
         android:layout_height="130dp"
         android:background="@drawable/bg_top"
         android:visibility="visible" />
 
     <ImageView
+        android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo_main"
@@ -24,7 +25,7 @@
         android:id="@+id/rvChampion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ivLogo"
+        android:layout_below="@id/ivLogoBg"
         android:background="@drawable/img_fundo"
         android:paddingTop="10dp" />
 

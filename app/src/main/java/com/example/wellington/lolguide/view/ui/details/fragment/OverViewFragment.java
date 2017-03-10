@@ -25,6 +25,7 @@ import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.model.champion.Info;
 import com.example.wellington.lolguide.model.champion.Stats;
 
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -101,8 +102,8 @@ public class OverViewFragment extends Fragment {
     TextView tvSpelllBlock;
     @Bind(R.id.tvSpellBlockPerLevel)
     TextView tvSpellBlockPerLevel;
-    @Bind(R.id.sbLevel)
-    SeekBar seekBar;
+    @Bind(R.id.sbLevelCustom)
+    DiscreteSeekBar seekBarCustom;
     @Bind(R.id.tvLevel)
     TextView tvLevel;
     @BindString(R.string.level)
@@ -163,7 +164,7 @@ public class OverViewFragment extends Fragment {
         animateProgress(progressBarAt, info.attack);
 
 //        progressBarDe.setProgress(info.defense);
-        animateProgress(progressBarDe, info.difficulty);
+        animateProgress(progressBarDe, info.defense);
 
 
 //        progressBarMa.setProgress(info.magic);
@@ -234,24 +235,26 @@ public class OverViewFragment extends Fragment {
         tvLevel.setText(String.format(levelString, 1));
 
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        seekBarCustom.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvLevel.setText(String.format(levelString, progress + 1));
+            public void onProgressChanged(DiscreteSeekBar seekBar, int progress, boolean fromUser) {
+                tvLevel.setText(String.format(levelString, progress));
 
                 updateLevel(progress);
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
 
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
 
             }
         });
+
     }
 
 }

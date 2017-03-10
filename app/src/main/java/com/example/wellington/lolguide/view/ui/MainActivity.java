@@ -1,6 +1,5 @@
 package com.example.wellington.lolguide.view.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,8 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.wellington.lolguide.R;
@@ -20,6 +21,8 @@ import com.example.wellington.lolguide.model.ObjectAdapter;
 import com.example.wellington.lolguide.view.ui.details.ChampionDetail;
 import com.example.wellington.lolguide.view.ui.fragment.ChampionFragment;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
 import butterknife.Bind;
@@ -37,9 +40,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Bind(R.id.menu)
     FloatingActionMenu fab;
 
-    Context context;
 
-    private InterstitialAd mInterstitialAd;
     private MyPageAdapterMain mpAdapter;
     private SearchView searchView;
 
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         });
 
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
 
     }
 
@@ -163,8 +166,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         ImageView vClose = (ImageView) searchView.findViewById(searchCloseImgId);
         vClose.setImageResource(R.drawable.bt_close);
 
+        EditText editText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        editText.setTextColor(getResources().getColor(R.color.whiteFont));
 
-        searchView.setQueryHint("Buscar");
+
+        searchView.setQueryHint(Html.fromHtml("<font color = #ffffff>"
+                + getResources().getString(R.string.hintSearchMess) + "</font>"));
+
+
         searchView.setOnQueryTextListener(this);
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
@@ -206,16 +215,19 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         return false;
     }
 
-    //endregion
-
     private void openSearchMenu() {
         fab.setVisibility(View.GONE);
-
+        ((ChampionFragment) mpAdapter.getItem(0)).hideLogo();
     }
 
     public void closeSearchMenu() {
         fab.setVisibility(View.VISIBLE);
+
+        ((ChampionFragment) mpAdapter.getItem(0)).showLogo();
+
     }
+
+    //endregion
 
 
     public void callDetails(String id, ActivityOptionsCompat activityOptionsCompat) {

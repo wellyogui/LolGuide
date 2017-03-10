@@ -4,17 +4,23 @@ package com.example.wellington.lolguide.view.ui.details.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.model.champion.Skin;
 import com.example.wellington.lolguide.utils.AppConfigs;
+import com.example.wellington.lolguide.view.adapter.SkinAdapter;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,14 +31,16 @@ import butterknife.ButterKnife;
 public class SkinFragment extends Fragment {
 
     public static final String SKIN = "skins";
-
-    private Context mContext;
+    public static final String NAMECHAMP = "nameChamp";
 
     private View view;
-    private Skin mSkin;
+    private List<Skin> mSkin;
+    private SkinAdapter skinAdapter;
+    private String mChampName;
 
-    @Bind(R.id.ivSkin1)
-    ImageView ivSkin1;
+
+    @Bind(R.id.rlSkin)
+    RecyclerView rlSkin;
 
     public SkinFragment() {
         // Required empty public constructor
@@ -47,19 +55,30 @@ public class SkinFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         Bundle bundle = getArguments();
-        if (bundle != null){
-//            mSkin = (Skin) bundle.getSerializable(SKIN);
-//            getSkins(mSkin);
+        if (bundle != null) {
+            mSkin = (List<Skin>) bundle.getSerializable(SKIN);
+            mChampName = bundle.getString(NAMECHAMP);
+            getSkins(mSkin);
         }
 
         return view;
 
     }
 
-    public void getSkins(Skin skin){
+    public void getSkins(List<Skin> skin) {
 
-        Picasso.with(getActivity()).load(String.format(AppConfigs.skinsImage, "Aatrox", skin.num)).into(ivSkin1);
+        LinearLayoutManager llManager = new LinearLayoutManager(getActivity());
 
+        rlSkin.setLayoutManager(llManager);
+
+        skinAdapter = new SkinAdapter(getActivity(), skin, mChampName, new SkinAdapter.OnObjectClickListener() {
+            @Override
+            public void OnObjectClickListener(Skin skin) {
+                Toast.makeText(getActivity(), String.valueOf(skin.num), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        rlSkin.setAdapter(skinAdapter);
 
     }
 

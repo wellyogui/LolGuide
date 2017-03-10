@@ -1,14 +1,20 @@
 package com.example.wellington.lolguide.view.ui.details;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.transition.TransitionInflater;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,12 +24,14 @@ import android.widget.TextView;
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.ObjectAdapter;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
+import com.example.wellington.lolguide.model.champion.Skin;
 import com.example.wellington.lolguide.presenter.ChampionPresenter;
 import com.example.wellington.lolguide.repository.contracts.ChampionDetailListener;
 import com.example.wellington.lolguide.utils.AppConfigs;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,8 +39,8 @@ import butterknife.ButterKnife;
 public class ChampionDetail extends AppCompatActivity {
 
     private Context mContext;
-    private ChampionDto championdto;
     private ChampionPresenter championPresenter;
+
 
     private String region = "br";
 
@@ -47,6 +55,10 @@ public class ChampionDetail extends AppCompatActivity {
     TextView tvTitleChampion;
     @Bind(R.id.llPrincipal)
     LinearLayout linearLayoutPrincipal;
+    @Bind(R.id.ivBgDetails)
+    ImageView bgDetails;
+    @Bind(R.id.toolbarBack)
+    Toolbar toolbar;
     //endregion
 
     //region [Bind Tags]
@@ -68,12 +80,52 @@ public class ChampionDetail extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        getWindow().setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.transition));
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("");
+
+            Drawable drawable = toolbar.getNavigationIcon();
+            drawable.setColorFilter(ContextCompat.getColor(this, R.color.whiteFont), PorterDuff.Mode.SRC_ATOP);
+        }
 
 
-        getDetails();
+        getWindow().setSharedElementEnterTransition(TransitionInflater.from(this)
+                .inflateTransition(R.transition.transition));
 
-        setSwipe();
+
+        setDetails();
+
+//        setSwipe();
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            super.onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void setSkins(ChampionDto championDto) {
+        final List<Skin> skin = championDto.skins;
+
+        if (skin != null && skin.size() > 0) {
+            Random random = new Random();
+            final int n = random.nextInt(skin.size());
+
+
+            Picasso.with(this).load(String.format(AppConfigs.skinsImage, championDto.name, skin.get(n).num)).placeholder(R.drawable.bg_detail).into(bgDetails);
+
+
+        }
+
     }
 
     private void setSwipe() {
@@ -93,7 +145,7 @@ public class ChampionDetail extends AppCompatActivity {
     }
 
 
-    public void getDetails() {
+    public void setDetails() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String id = bundle.getString(ObjectAdapter.ID);
@@ -103,6 +155,8 @@ public class ChampionDetail extends AppCompatActivity {
                 @Override
                 public void onChampionDetail(ChampionDto championDto) {
                     setChampionDetails(championDto);
+
+                    setSkins(championDto);
                 }
 
                 @Override
@@ -132,14 +186,14 @@ public class ChampionDetail extends AppCompatActivity {
         tvNameChampion.setText(championDto.name);
         tvTitleChampion.setText(championDto.title);
 
-        getTag(championDto.tags);
+        setTag(championDto.tags);
 
         Picasso.with(mContext).load(String.format(AppConfigs.portraitChampion, championDto.image.full)).into(ivPortrait);
 
 
     }
 
-    private void getTag(List<String> tagList) {
+    private void setTag(List<String> tagList) {
 
 
         String mTag = "";

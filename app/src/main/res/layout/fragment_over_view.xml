@@ -84,7 +84,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:max="20"
-                        android:progressDrawable="@drawable/defesa_progressbar"
+                        android:progressDrawable="@drawable/dificuldade_progressbar"
                         tools:progress="5" />
 
 
@@ -171,10 +171,27 @@
                     android:paddingBottom="5dp"
                     android:text="Stats:" />
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:id="@+id/tvLevel"
+                        style="@style/fontSubTitle"
+                        android:text="@string/level" />
+
+
+                </LinearLayout>
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="15dp">
 
                     <TextView
                         style="@style/fontSubTitle"
@@ -189,6 +206,7 @@
                     <TextView
                         android:id="@+id/tvVidaPerLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
                         android:paddingLeft="10dp"
                         android:text="(+ por level)" />
 
@@ -212,6 +230,7 @@
                     <TextView
                         android:id="@+id/tvVidaRegenPorLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
                         android:paddingLeft="10dp"
                         android:text="(+ por level)" />
 
@@ -235,6 +254,7 @@
                     <TextView
                         android:id="@+id/tvArmaduraPorLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
                         android:paddingLeft="10dp"
                         android:text="(+ por level)" />
 
@@ -258,6 +278,8 @@
                     <TextView
                         android:id="@+id/tvDanoAtaquePorLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
+
                         android:paddingLeft="10dp"
                         android:text="(+ por level)" />
 
@@ -281,6 +303,8 @@
                     <TextView
                         android:id="@+id/tvVelocidadeAtaquePorLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
+
                         android:paddingLeft="10dp"
                         android:text="(+ por level)" />
 
@@ -322,6 +346,8 @@
                     <TextView
                         android:id="@+id/tvAtaqueCriticoPorLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
+
                         android:paddingLeft="10dp"
                         android:text="(+ por level)" />
 
@@ -363,7 +389,9 @@
                     <TextView
                         android:id="@+id/tvMPPerLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
                         android:paddingLeft="10dp"
+
                         android:text="(+ por level)" />
 
                 </LinearLayout>
@@ -386,7 +414,9 @@
                     <TextView
                         android:id="@+id/tvMPRegenPerLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
                         android:paddingLeft="10dp"
+
                         android:text="(+ por level)" />
 
                 </LinearLayout>
@@ -409,6 +439,7 @@
                     <TextView
                         android:id="@+id/tvSpellBlockPerLevel"
                         style="@style/fontText"
+                        android:maxLines="1"
                         android:paddingLeft="10dp"
                         android:text="(+ por level)" />
 
@@ -419,19 +450,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="20dp">
+                    android:paddingTop="40dp">
 
-                    <TextView
-                        android:id="@+id/tvLevel"
-                        style="@style/fontSubTitle"
-                        android:text="@string/level" />
-
-                    <SeekBar
-                        android:id="@+id/sbLevel"
+                    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                        android:id="@+id/sbLevelCustom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:max="17"
-                        android:progress="0" />
+                        app:dsb_max="18"
+                        app:dsb_min="1"
+                        app:dsb_value="1" />
 
                 </LinearLayout>
 

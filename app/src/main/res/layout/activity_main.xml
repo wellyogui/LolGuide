@@ -3,19 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ui.MainActivity">
-
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
-
 
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs_main"
@@ -32,8 +23,8 @@
         android:id="@+id/viewpager_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar" />
-
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/adView"/>
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu"
@@ -49,7 +40,7 @@
         fab:menu_colorRipple="#99FFFFFF"
         fab:menu_fab_label="Filtro"
         fab:menu_fab_size="normal"
-        fab:menu_icon="@mipmap/ic_menu"
+        fab:menu_icon="@drawable/ic_menu"
         fab:menu_labels_colorNormal="#333333"
         fab:menu_labels_colorPressed="#444444"
         fab:menu_labels_colorRipple="#66FFFFFF"
@@ -168,6 +159,24 @@
 
 
     </com.github.clans.fab.FloatingActionMenu>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/transparent"
+        android:clickable="false" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/idBannerAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>
