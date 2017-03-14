@@ -1,6 +1,7 @@
 package com.example.wellington.lolguide.view.ui;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -21,6 +22,7 @@ import com.example.wellington.lolguide.model.ObjectAdapter;
 import com.example.wellington.lolguide.view.ui.details.ChampionDetail;
 import com.example.wellington.lolguide.view.ui.fragment.ChampionFragment;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -28,6 +30,8 @@ import com.google.android.gms.ads.InterstitialAd;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.view.View.GONE;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -39,10 +43,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     ViewPager viewPager;
     @Bind(R.id.menu)
     FloatingActionMenu fab;
+    @Bind(R.id.viewClickable)
+    View viewClickable;
 
 
     private MyPageAdapterMain mpAdapter;
     private SearchView searchView;
+    private AdView mAdView;
 
 
     @Override
@@ -64,16 +71,25 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             public void onClick(View v) {
                 if (!fab.isOpened()) {
                     fab.open(true);
-                    fab.getMenuIconView().setImageResource(R.drawable.ic_close);
+                    fab.getMenuIconView().setImageResource(R.mipmap.ic_close);
+                    viewClickable.setVisibility(View.VISIBLE);
+
                 } else {
                     fab.close(true);
                     fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+                    viewClickable.setVisibility(GONE);
+
                 }
             }
         });
 
-        AdView adView = new AdView(this);
-        adView.setAdSize(AdSize.BANNER);
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
+
+    @OnClick(R.id.viewClickable)
+    public void viewClick(){
 
     }
 
@@ -84,12 +100,15 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         ((ChampionFragment) mpAdapter.getItem(0)).reverse();
         fab.close(true);
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+
 
     }
 
     @OnClick(R.id.tank)
     public void filterTank() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.TANK);
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
 
         fab.close(true);
     }
@@ -97,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @OnClick(R.id.mage)
     public void filterMage() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.MAGE);
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
 
         fab.close(true);
     }
@@ -104,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @OnClick(R.id.marskman)
     public void filterMarskman() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.MARKSMAN);
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
 
         fab.close(true);
     }
@@ -111,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @OnClick(R.id.support)
     public void filterSupport() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.SUPPORT);
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
 
         fab.close(true);
     }
@@ -118,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @OnClick(R.id.fighter)
     public void filterFigher() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.FIGHTER);
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
 
         fab.close(true);
     }
@@ -125,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @OnClick(R.id.assassin)
     public void filterAssisn() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.ASSASSIN);
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
 
         fab.close(true);
     }
@@ -134,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         ((ChampionFragment) mpAdapter.getItem(0)).nonFilter();
 
         ((ChampionFragment) mpAdapter.getItem(0)).cleanChampFilter();
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
 
         fab.close(true);
 
@@ -144,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void filterFree() {
 
         ((ChampionFragment) mpAdapter.getItem(0)).freeWeek();
+        fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
 
         fab.close(true);
     }
@@ -167,11 +193,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         vClose.setImageResource(R.drawable.bt_close);
 
         EditText editText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        editText.setTextColor(getResources().getColor(R.color.whiteFont));
+        editText.setTextColor(getResources().getColor(R.color.darkBlack));
+        editText.setBackgroundColor(getResources().getColor(R.color.white));
+
+        searchView.setQueryHint(getResources().getString(R.string.hintSearchMess) );
 
 
-        searchView.setQueryHint(Html.fromHtml("<font color = #ffffff>"
-                + getResources().getString(R.string.hintSearchMess) + "</font>"));
 
 
         searchView.setOnQueryTextListener(this);
@@ -210,21 +237,20 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String newText) {
-
-
         return false;
     }
 
     private void openSearchMenu() {
-        fab.setVisibility(View.GONE);
+        fab.setVisibility(GONE);
         ((ChampionFragment) mpAdapter.getItem(0)).hideLogo();
+        mAdView.setVisibility(GONE);
     }
 
     public void closeSearchMenu() {
         fab.setVisibility(View.VISIBLE);
 
         ((ChampionFragment) mpAdapter.getItem(0)).showLogo();
-
+        mAdView.setVisibility(View.VISIBLE);
     }
 
     //endregion

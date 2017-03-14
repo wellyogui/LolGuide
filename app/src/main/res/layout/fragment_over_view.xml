@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/blue"
+    android:background="@color/dimGrey"
     tools:context="com.example.wellington.lolguide.view.ui.details.fragment.OverViewFragment">
 
 
@@ -156,6 +156,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             app:cardBackgroundColor="@color/cardview_dark_background"
             card_view:cardCornerRadius="5dp"
             card_view:cardElevation="4dp"

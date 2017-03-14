@@ -24,6 +24,7 @@ import com.example.wellington.lolguide.repository.contracts.ChampionListListener
 import com.example.wellington.lolguide.utils.AppConfigs;
 import com.example.wellington.lolguide.view.adapter.MainAdapter;
 import com.example.wellington.lolguide.view.ui.MainActivity;
+import com.google.android.gms.ads.AdView;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class ChampionFragment extends Fragment {
     private List<ChampionDto> filterChamp = new ArrayList<>();
     private List<ChampionDto> filterName = new ArrayList<>();
 
+
     private String region = "br";
     //endregion
 
@@ -55,6 +57,7 @@ public class ChampionFragment extends Fragment {
     RecyclerView rvChampion;
     @Bind(R.id.ivLogo)
     ImageView ivLogo;
+
 
 
     public ChampionFragment() {
@@ -72,6 +75,7 @@ public class ChampionFragment extends Fragment {
         championPresenter = new ChampionPresenter();
         mLayoutManager = new GridLayoutManager(getActivity(), 4);
         rvChampion.setLayoutManager(mLayoutManager);
+
 
 
         getList();
@@ -102,7 +106,7 @@ public class ChampionFragment extends Fragment {
 
             @Override
             public void onError(Throwable error) {
-                if(error instanceof UnknownHostException){
+                if (error instanceof UnknownHostException) {
                     Toast.makeText(getActivity(), "Sem conexão com a internet", Toast.LENGTH_LONG).show();
                 }
             }
@@ -116,7 +120,7 @@ public class ChampionFragment extends Fragment {
         mainAdapter = new MainAdapter(getActivity(), list, new MainAdapter.OnObjectClickListener() {
             @Override
             public void OnObjectClickListener(ObjectAdapter objectAdapter, ImageView ivBorder, ImageView ivPortrait) {
-                Toast.makeText(getActivity(), "Object Adapter" + objectAdapter.Id, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Object Adapter" + objectAdapter.Id, Toast.LENGTH_SHORT).show();
 
                 Pair<View, String> pair1 = Pair.create((View) ivBorder, ivBorder.getTransitionName());
                 Pair<View, String> pair2 = Pair.create((View) ivPortrait, ivPortrait.getTransitionName());
@@ -134,6 +138,33 @@ public class ChampionFragment extends Fragment {
         mainAdapter.notifyDataSetChanged();
 
     }
+
+
+    // region [SearchView]
+    public void filterName(String champName) {
+
+        filterName = championPresenter.filterName(filterChamp != null && filterChamp.size() > 0 ?
+                filterChamp : champList, champName);
+
+        List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(filterName);
+
+        displayChampionList(champFilter);
+
+    }
+
+    public void showLogo() {
+        ivLogo.setVisibility(View.VISIBLE);
+    }
+
+    public void hideLogo() {
+
+        ivLogo.setVisibility(View.GONE);
+
+    }
+
+    //endregion
+
+    //region [FAB]
 
     public void resetChampionList() {
 
@@ -163,17 +194,6 @@ public class ChampionFragment extends Fragment {
         filterChamp = championPresenter.filterTag(champList, championEnum);
 
         List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(filterChamp);
-
-        displayChampionList(champFilter);
-
-    }
-
-    public void filterName(String champName) {
-
-        filterName = championPresenter.filterName(filterChamp != null && filterChamp.size() > 0 ?
-                filterChamp : champList, champName);
-
-        List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(filterName);
 
         displayChampionList(champFilter);
 
@@ -214,21 +234,13 @@ public class ChampionFragment extends Fragment {
 
     }
 
-    public void showLogo() {
-        ivLogo.setVisibility(View.VISIBLE);
-    }
-
-    public void hideLogo() {
-
-        ivLogo.setVisibility(View.GONE);
-
-    }
-
     public void nonFilter() {
         List<ObjectAdapter> champFilter = ObjectAdapter.convertChampionToObject(champList);
 
         displayChampionList(champFilter);
     }
+
+    //endregion
 
 
 }

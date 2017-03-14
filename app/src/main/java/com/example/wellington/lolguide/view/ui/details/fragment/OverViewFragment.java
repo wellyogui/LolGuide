@@ -3,6 +3,7 @@ package com.example.wellington.lolguide.view.ui.details.fragment;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -33,6 +34,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
+
+import static android.graphics.Color.BLACK;
 
 
 public class OverViewFragment extends Fragment {
@@ -233,7 +236,6 @@ public class OverViewFragment extends Fragment {
     private void setLevelSeekBar() {
 
         tvLevel.setText(String.format(levelString, 1));
-
 
 
         seekBarCustom.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {

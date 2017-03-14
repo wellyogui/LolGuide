@@ -12,5 +12,7 @@
     <string name="idIntersticialAd">ca-app-pub-6154983735780202/4214097174</string>
     <string name="idBannerAd">ca-app-pub-6154983735780202/6365154774</string>
     <string name="hintSearchMess">Buscar</string>
+    <string name="my_skin">Skin</string>
+    <string name="share_using">Compartilhar com ...</string>
 
 </resources>

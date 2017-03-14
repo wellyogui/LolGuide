@@ -56,7 +56,9 @@ public class MyPageAdapter extends FragmentStatePagerAdapter {
             case 4:
                 fragment = new SkinFragment();
                 bundle.putSerializable(SkinFragment.SKIN, (Serializable) this.championDto.skins);
-                bundle.putString(SkinFragment.NAMECHAMP, this.championDto.name);
+                String[] arrayString = this.championDto.image.full.split("\\.");
+
+                bundle.putString(SkinFragment.NAMECHAMP, arrayString[0]);
                 break;
 
             default:

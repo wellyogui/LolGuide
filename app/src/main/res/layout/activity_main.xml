@@ -26,12 +26,22 @@
         android:layout_alignParentTop="true"
         android:layout_above="@+id/adView"/>
 
+    <View
+        android:id="@+id/viewClickable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:clickable="false"
+        android:visibility="gone"
+        />
+
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:paddingTop="10dp"
         fab:menu_animationDelayPerItem="50"
         fab:menu_backgroundColor="#B300001A"
         fab:menu_buttonSpacing="0dp"
@@ -39,7 +49,7 @@
         fab:menu_colorPressed="#cc9900"
         fab:menu_colorRipple="#99FFFFFF"
         fab:menu_fab_label="Filtro"
-        fab:menu_fab_size="normal"
+        fab:menu_fab_size="mini"
         fab:menu_icon="@drawable/ic_menu"
         fab:menu_labels_colorNormal="#333333"
         fab:menu_labels_colorPressed="#444444"
@@ -53,7 +63,7 @@
         fab:menu_labels_paddingBottom="4dp"
         fab:menu_labels_paddingLeft="8dp"
         fab:menu_labels_paddingRight="8dp"
-        fab:menu_labels_paddingTop="4dp"
+        fab:menu_labels_paddingTop="10dp"
         fab:menu_labels_position="right"
         fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
         fab:menu_labels_showShadow="true"
@@ -141,7 +151,7 @@
             android:id="@+id/freeToPlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_my_calendar"
+            android:src="@mipmap/ic_calendar"
             fab:fab_colorNormal="#cc9900"
             fab:fab_colorPressed="#cc9900"
             fab:fab_label="Free Week"
@@ -171,12 +181,11 @@
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
-        ads:adSize="BANNER"
+        ads:adSize="SMART_BANNER"
         ads:adUnitId="@string/idBannerAd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
-
 
 </RelativeLayout>

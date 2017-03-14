@@ -12,6 +12,7 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionInflater;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.wellington.lolguide.R;
@@ -28,6 +30,7 @@ import com.example.wellington.lolguide.model.champion.Skin;
 import com.example.wellington.lolguide.presenter.ChampionPresenter;
 import com.example.wellington.lolguide.repository.contracts.ChampionDetailListener;
 import com.example.wellington.lolguide.utils.AppConfigs;
+import com.ldoublem.loadingviewlib.view.LVCircularRing;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -59,6 +62,10 @@ public class ChampionDetail extends AppCompatActivity {
     ImageView bgDetails;
     @Bind(R.id.toolbarBack)
     Toolbar toolbar;
+    @Bind(R.id.llLoading)
+    RelativeLayout llLoading;
+    @Bind(R.id.lv_circularring)
+    LVCircularRing lvCircularRing;
     //endregion
 
     //region [Bind Tags]
@@ -106,7 +113,7 @@ public class ChampionDetail extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
-            super.onBackPressed();
+            supportFinishAfterTransition();
         }
 
         return super.onOptionsItemSelected(item);
@@ -120,29 +127,31 @@ public class ChampionDetail extends AppCompatActivity {
             Random random = new Random();
             final int n = random.nextInt(skin.size());
 
+            String[] arrayString = championDto.image.full.split("\\.");
 
-            Picasso.with(this).load(String.format(AppConfigs.skinsImage, championDto.name, skin.get(n).num)).placeholder(R.drawable.bg_detail).into(bgDetails);
+
+            Picasso.with(this).load(String.format(AppConfigs.skinsImage, arrayString[0], skin.get(n).num)).placeholder(R.drawable.bg_detail).into(bgDetails);
 
 
         }
 
     }
 
-    private void setSwipe() {
-        View myView = findViewById(R.id.llPrincipal);
-        myView.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = MotionEventCompat.getActionMasked(event);
-                switch (action) {
-                    case (MotionEvent.ACTION_DOWN):
-                        onBackPressed();
-                        return true;
-                    default:
-                        return true;
-                }
-            }
-        });
-    }
+//    private void setSwipe() {
+//        View myView = findViewById(R.id.llPrincipal);
+//        myView.setOnTouchListener(new View.OnTouchListener() {
+//            public boolean onTouch(View v, MotionEvent event) {
+//                int action = MotionEventCompat.getActionMasked(event);
+//                switch (action) {
+//                    case (MotionEvent.ACTION_DOWN):
+//                        onBackPressed();
+//                        return true;
+//                    default:
+//                        return true;
+//                }
+//            }
+//        });
+//    }
 
 
     public void setDetails() {
@@ -161,12 +170,12 @@ public class ChampionDetail extends AppCompatActivity {
 
                 @Override
                 public void onRequestStarted() {
-
+                    startLoadingScreen();
                 }
 
                 @Override
                 public void onRequestFinished() {
-
+                    dismissLoadingScreen();
                 }
 
                 @Override
@@ -188,7 +197,8 @@ public class ChampionDetail extends AppCompatActivity {
 
         setTag(championDto.tags);
 
-        Picasso.with(mContext).load(String.format(AppConfigs.portraitChampion, championDto.image.full)).into(ivPortrait);
+
+            Picasso.with(mContext).load(String.format(AppConfigs.portraitChampion, championDto.image.full)).into(ivPortrait);
 
 
     }
@@ -248,6 +258,17 @@ public class ChampionDetail extends AppCompatActivity {
         });
 
 
+    }
+
+    private void startLoadingScreen() {
+        llLoading.setVisibility(View.VISIBLE);
+        lvCircularRing.setViewColor(Color.argb(100, 255, 255, 255));
+        lvCircularRing.setBarColor(Color.YELLOW);
+        lvCircularRing.startAnim();
+    }
+
+    private void dismissLoadingScreen() {
+        llLoading.setVisibility(View.GONE);
     }
 
 }

@@ -2,6 +2,8 @@ package com.example.wellington.lolguide.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,12 +31,12 @@ public class SkinAdapter extends RecyclerView.Adapter<SkinAdapter.SkinAdapterVie
 
 
     public interface OnObjectClickListener {
-        void OnObjectClickListener(Skin skin);
+        void OnObjectClickListener(Skin skin, String url);
 
     }
 
 
-    public SkinAdapter(Context context, List<Skin> skin, String champName,SkinAdapter.OnObjectClickListener listener) {
+    public SkinAdapter(Context context, List<Skin> skin, String champName, SkinAdapter.OnObjectClickListener listener) {
         this.mSkin = skin;
         this.mChampname = champName;
         this.listener = listener;
@@ -52,18 +54,18 @@ public class SkinAdapter extends RecyclerView.Adapter<SkinAdapter.SkinAdapterVie
     @Override
     public void onBindViewHolder(SkinAdapter.SkinAdapterViewHolder holder, int position) {
         Skin skin = mSkin.get(position);
+        String stringSkin = String.format(AppConfigs.skinsImage, mChampname, skin.num);
 
         String skinName;
-        if(skin.name.toLowerCase().equals("default")){
+        if (skin.name.toLowerCase().equals("default")) {
             skinName = mChampname;
-        }else {
+        } else {
             skinName = skin.name;
         }
         holder.tvNameSkin.setText(skinName);
-        holder.bind(skin, listener);
+        holder.bind(skin, stringSkin, listener);
 
 
-        String stringSkin = String.format(AppConfigs.skinsImage, mChampname, skin.num);
         Picasso.with(mContext).load(stringSkin).placeholder(R.drawable.bg_detail).into(holder.ivSkin);
 
 
@@ -87,11 +89,11 @@ public class SkinAdapter extends RecyclerView.Adapter<SkinAdapter.SkinAdapterVie
             this.ivSkin = (ImageView) itemView.findViewById(R.id.ivSkin);
         }
 
-        public void bind(final Skin skinListItem, final SkinAdapter.OnObjectClickListener listener) {
+        public void bind(final Skin skinListItem, final String url, final SkinAdapter.OnObjectClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.OnObjectClickListener(skinListItem);
+                    listener.OnObjectClickListener(skinListItem, url);
                 }
             });
         }

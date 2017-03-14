@@ -2,7 +2,10 @@ package com.example.wellington.lolguide.view.ui.details.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,13 +16,17 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
+import com.example.wellington.lolguide.SplashScreen;
 import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.model.champion.Skin;
 import com.example.wellington.lolguide.utils.AppConfigs;
 import com.example.wellington.lolguide.view.adapter.SkinAdapter;
+import com.example.wellington.lolguide.view.ui.MainActivity;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import butterknife.Bind;
@@ -73,13 +80,18 @@ public class SkinFragment extends Fragment {
 
         skinAdapter = new SkinAdapter(getActivity(), skin, mChampName, new SkinAdapter.OnObjectClickListener() {
             @Override
-            public void OnObjectClickListener(Skin skin) {
-                Toast.makeText(getActivity(), String.valueOf(skin.num), Toast.LENGTH_LONG).show();
+            public void OnObjectClickListener(Skin skin, String url) {
+                Intent intent = new Intent(getActivity(), SkinSaver.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(SkinSaver.SAVESKIN, url);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
         rlSkin.setAdapter(skinAdapter);
 
     }
+
 
 }
