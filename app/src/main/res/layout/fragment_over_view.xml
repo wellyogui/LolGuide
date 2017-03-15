@@ -31,6 +31,7 @@
 
                 <TextView
                     style="@style/fontTitleStyle"
+                    android:paddingBottom="10dp"
                     android:text="Informações: "
                     android:textSize="25dp" />
 
@@ -41,12 +42,13 @@
 
                     <TextView
                         style="@style/fontSubTitle"
-                        android:text="Ataque: " />
+                        android:paddingRight="10dp"
+                        android:text="ATK: " />
 
-                    <TextView
-                        android:id="@+id/tvAtaque"
-                        style="@style/fontText"
-                        android:text="Ataque" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/tvAtaque"-->
+                    <!--style="@style/fontText"-->
+                    <!--android:text="Ataque" />-->
 
                     <ProgressBar
                         android:id="@+id/progressBarAt"
@@ -69,12 +71,13 @@
                     <TextView
 
                         style="@style/fontSubTitle"
-                        android:text="Defesa: " />
+                        android:paddingRight="12dp"
+                        android:text="DEF: " />
 
-                    <TextView
-                        android:id="@+id/tvDefesa"
-                        style="@style/fontText"
-                        android:text="Defesa" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/tvDefesa"-->
+                    <!--style="@style/fontText"-->
+                    <!--android:text="Defesa" />-->
 
                     <ProgressBar
                         android:id="@+id/progressBarDe"
@@ -82,9 +85,8 @@
                         android:layout_width="130dp"
                         android:layout_height="10dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:max="20"
-                        android:progressDrawable="@drawable/dificuldade_progressbar"
+                        android:progressDrawable="@drawable/defesa_progressbar"
                         tools:progress="5" />
 
 
@@ -97,12 +99,13 @@
 
                     <TextView
                         style="@style/fontSubTitle"
-                        android:text="Magica: " />
+                        android:paddingRight="5dp"
+                        android:text="MAG: " />
 
-                    <TextView
-                        android:id="@+id/tvMagica"
-                        style="@style/fontText"
-                        android:text="Magica" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/tvMagica"-->
+                    <!--style="@style/fontText"-->
+                    <!--android:text="Magica" />-->
 
                     <ProgressBar
                         android:id="@+id/progressBarMa"
@@ -110,7 +113,6 @@
                         android:layout_width="130dp"
                         android:layout_height="10dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:max="20"
                         android:progressDrawable="@drawable/magica_progessbar"
                         tools:progress="5" />
@@ -126,12 +128,13 @@
 
                     <TextView
                         style="@style/fontSubTitle"
-                        android:text="Dificuldade: " />
+                        android:paddingRight="16dp"
+                        android:text="DIF: " />
 
-                    <TextView
-                        android:id="@+id/tvDificu"
-                        style="@style/fontText"
-                        android:text="Dificuldade:" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/tvDificu"-->
+                    <!--style="@style/fontText"-->
+                    <!--android:text="Dificuldade:" />-->
 
                     <ProgressBar
                         android:id="@+id/progressBarDi"
@@ -139,7 +142,6 @@
                         android:layout_width="130dp"
                         android:layout_height="10dp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:max="20"
                         android:progressDrawable="@drawable/dificuldade_progressbar"
                         tools:progress="5" />

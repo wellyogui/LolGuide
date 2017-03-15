@@ -53,14 +53,15 @@ public class SplashScreen extends AppCompatActivity {
         imageList.add(R.drawable.splash3);
         imageList.add(R.drawable.splash4);
         imageList.add(R.drawable.splash5);
+        imageList.add(R.drawable.splash6);
         imageList.add(R.drawable.splash7);
         imageList.add(R.drawable.splash8);
         imageList.add(R.drawable.splash9);
         imageList.add(R.drawable.splash10);
         imageList.add(R.drawable.splash11);
+        imageList.add(R.drawable.splash12);
         imageList.add(R.drawable.splash13);
-
-
+        imageList.add(R.drawable.splash14);
 
 
         return imageList;

@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.champion.Champion;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
@@ -45,14 +46,14 @@ public class OverViewFragment extends Fragment {
     public static final String TAG = "tags";
 
     //region [Bind Info]
-    @Bind(R.id.tvAtaque)
-    TextView tvAtaque;
-    @Bind(R.id.tvDefesa)
-    TextView tvDefesa;
-    @Bind(R.id.tvMagica)
-    TextView tvMagica;
-    @Bind(R.id.tvDificu)
-    TextView tvDificuldade;
+//    @Bind(R.id.tvAtaque)
+//    TextView tvAtaque;
+//    @Bind(R.id.tvDefesa)
+//    TextView tvDefesa;
+//    @Bind(R.id.tvMagica)
+//    TextView tvMagica;
+//    @Bind(R.id.tvDificu)
+//    TextView tvDificuldade;
     @Bind(R.id.progressBarAt)
     ProgressBar progressBarAt;
     @Bind(R.id.progressBarDe)
@@ -158,10 +159,10 @@ public class OverViewFragment extends Fragment {
 
     public void getInfo() {
 
-        tvAtaque.setText(String.valueOf(info.attack));
-        tvDefesa.setText(String.valueOf(info.defense));
-        tvMagica.setText(String.valueOf(info.magic));
-        tvDificuldade.setText(String.valueOf(info.difficulty));
+//        tvAtaque.setText(String.valueOf(info.attack));
+//        tvDefesa.setText(String.valueOf(info.defense));
+//        tvMagica.setText(String.valueOf(info.magic));
+//        tvDificuldade.setText(String.valueOf(info.difficulty));
 
 //        progressBarAt.setProgress(info.attack);
         animateProgress(progressBarAt, info.attack);

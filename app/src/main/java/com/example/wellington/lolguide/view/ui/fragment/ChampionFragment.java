@@ -25,12 +25,14 @@ import com.example.wellington.lolguide.utils.AppConfigs;
 import com.example.wellington.lolguide.view.adapter.MainAdapter;
 import com.example.wellington.lolguide.view.ui.MainActivity;
 import com.google.android.gms.ads.AdView;
+import com.squareup.picasso.Picasso;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -82,6 +84,7 @@ public class ChampionFragment extends Fragment {
 
         return view;
     }
+
 
 
     private void getList() {

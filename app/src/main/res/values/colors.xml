@@ -2,9 +2,11 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#304446</color>
+    <color name="colorSecondary">#3B2B3F</color>
     <color name="viewBackground">#B3000000</color>
     <color name="colorAccent">#E4C555</color>
     <color name="dimGrey">#848581</color>
+    <color name="viewBackGround">#66848581</color>
     <color name="darkBlack">#1E2019</color>
     <color name="whiteFont">#F5DEB3</color>
     <color name="red">#FF0000</color>

@@ -31,6 +31,7 @@
 
                 <TextView
                     style="@style/fontTitleStyle"
+                    android:paddingBottom="10dp"
                     android:text="Lore: " />
 
                 <TextView

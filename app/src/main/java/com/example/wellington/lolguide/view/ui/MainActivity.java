@@ -1,7 +1,6 @@
 package com.example.wellington.lolguide.view.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -10,7 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -23,9 +21,7 @@ import com.example.wellington.lolguide.view.ui.details.ChampionDetail;
 import com.example.wellington.lolguide.view.ui.fragment.ChampionFragment;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -75,9 +71,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                     viewClickable.setVisibility(View.VISIBLE);
 
                 } else {
-                    fab.close(true);
                     fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
                     viewClickable.setVisibility(GONE);
+                    fab.close(true);
 
                 }
             }
@@ -89,9 +85,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @OnClick(R.id.viewClickable)
-    public void viewClick(){
+    public void viewClick() {
 
     }
+
 
     //region [FAB]
 
@@ -99,8 +96,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void ordenarAZ() {
 
         ((ChampionFragment) mpAdapter.getItem(0)).reverse();
-        fab.close(true);
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
+        fab.close(true);
 
 
     }
@@ -109,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void filterTank() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.TANK);
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
 
         fab.close(true);
     }
@@ -117,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void filterMage() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.MAGE);
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
 
         fab.close(true);
     }
@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void filterMarskman() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.MARKSMAN);
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
 
         fab.close(true);
     }
@@ -133,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void filterSupport() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.SUPPORT);
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
 
         fab.close(true);
     }
@@ -141,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void filterFigher() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.FIGHTER);
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
 
         fab.close(true);
     }
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     public void filterAssisn() {
         ((ChampionFragment) mpAdapter.getItem(0)).filterChamp(ChampionEnum.ASSASSIN);
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
 
         fab.close(true);
     }
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         ((ChampionFragment) mpAdapter.getItem(0)).cleanChampFilter();
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
 
         fab.close(true);
 
@@ -170,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         ((ChampionFragment) mpAdapter.getItem(0)).freeWeek();
         fab.getMenuIconView().setImageResource(R.drawable.ic_menu);
+        viewClickable.setVisibility(GONE);
 
         fab.close(true);
     }
@@ -196,9 +202,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         editText.setTextColor(getResources().getColor(R.color.darkBlack));
         editText.setBackgroundColor(getResources().getColor(R.color.white));
 
-        searchView.setQueryHint(getResources().getString(R.string.hintSearchMess) );
-
-
+        searchView.setQueryHint(getResources().getString(R.string.hintSearchMess));
 
 
         searchView.setOnQueryTextListener(this);

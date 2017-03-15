@@ -30,7 +30,7 @@
         android:id="@+id/viewClickable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/viewBackGround"
         android:clickable="false"
         android:visibility="gone"
         />
@@ -43,7 +43,7 @@
         android:layout_alignParentTop="true"
         android:paddingTop="10dp"
         fab:menu_animationDelayPerItem="50"
-        fab:menu_backgroundColor="#B300001A"
+        fab:menu_backgroundColor="@color/viewBackground"
         fab:menu_buttonSpacing="0dp"
         fab:menu_colorNormal="#cc9900"
         fab:menu_colorPressed="#cc9900"
