@@ -24,10 +24,10 @@
                     android:radius="10dp"
                     />
                 <gradient
-                    android:startColor="#D90429"
-                    android:centerColor="#B20422"
+                    android:startColor="#A64049"
+                    android:centerColor="#931621"
                     android:centerY="1.0"
-                    android:endColor="#770317"
+                    android:endColor="#79131C"
                     android:angle="270"
                 />
             </shape>

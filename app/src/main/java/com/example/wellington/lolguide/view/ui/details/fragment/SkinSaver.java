@@ -1,6 +1,7 @@
 package com.example.wellington.lolguide.view.ui.details.fragment;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,11 +9,11 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +33,8 @@ import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class SkinSaver extends AppCompatActivity {
 
@@ -49,6 +51,8 @@ public class SkinSaver extends AppCompatActivity {
     private String mChampname;
     private ChampionDto champion;
     private String stringSkin;
+    private String file = "mydata";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +67,7 @@ public class SkinSaver extends AppCompatActivity {
             getSupportActionBar().setTitle("");
 
             Drawable drawable = toolbarSkin.getNavigationIcon();
-            drawable.setColorFilter(ContextCompat.getColor(this, R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+            drawable.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP);
         }
 
         Bundle bundle = getIntent().getExtras();
@@ -81,9 +85,9 @@ public class SkinSaver extends AppCompatActivity {
 
         if (id == android.R.id.home) {
             super.onBackPressed();
-        } else if (id == R.id.bt_share){
+        } else if (id == R.id.bt_share) {
             shareSkin(this, stringSkin);
-        } else if(id == R.id.bt_save){
+        } else if (id == R.id.bt_save) {
             checkPermissions();
         }
 
@@ -130,10 +134,10 @@ public class SkinSaver extends AppCompatActivity {
     }
 
     public void checkPermissions() {
-        if (ContextCompat.checkSelfPermission(SkinSaver.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(SkinSaver.this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             saveSkin();
         } else {
-            ActivityCompat.requestPermissions(SkinSaver.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_WRITE_EXTERNAL_STORAGE);
+            ActivityCompat.requestPermissions(SkinSaver.this, new String[]{WRITE_EXTERNAL_STORAGE}, PERMISSION_WRITE_EXTERNAL_STORAGE);
         }
     }
 
@@ -141,27 +145,34 @@ public class SkinSaver extends AppCompatActivity {
         ivSkinSaver.buildDrawingCache();
         Bitmap bm = ivSkinSaver.getDrawingCache();
 
-        OutputStream fOut = null;
-        Uri outputFileUri;
+        OutputStream Out = null;
+        String path = Environment.DIRECTORY_PICTURES.toString();
+        File folder = new File(path + "/Blabla");
+
         try {
             File mediaFile;
             File mediaStorageDir = new File(Environment.getExternalStorageDirectory()
-                    + "/Android/data/"
+                    + "/Android/data"
                     + getApplicationContext().getPackageName()
                     + "/Files");
-            String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
-            String mImageName = "MI_" + timeStamp + ".jpg";
+            String timeStamp = new SimpleDateFormat("dd/MM/yyyy_HH:mm_").format(new Date());
+            String mImageName = timeStamp + stringSkin;
             mediaFile = new File(mediaStorageDir.getPath() + File.separator + mImageName);
-            fOut = new FileOutputStream(mediaFile);
+            Out = new FileOutputStream(mediaFile);
+            mediaFile.createNewFile();
+            Toast.makeText(getBaseContext(), "file saved", Toast.LENGTH_SHORT).show();
+
         } catch (Exception e) {
-            Toast.makeText(this, "Error occured. Please try again later.",
+            Toast.makeText(this, "Error occured. Please try again later." + e.getStackTrace(),
                     Toast.LENGTH_SHORT).show();
+
+            e.printStackTrace();
         }
 
         try {
-            bm.compress(Bitmap.CompressFormat.PNG, 100, fOut);
-            fOut.flush();
-            fOut.close();
+            bm.compress(Bitmap.CompressFormat.PNG, 100, Out);
+            Out.flush();
+            Out.close();
         } catch (Exception e) {
         }
     }
