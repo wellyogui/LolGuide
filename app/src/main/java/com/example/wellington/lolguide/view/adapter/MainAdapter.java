@@ -1,6 +1,8 @@
 package com.example.wellington.lolguide.view.adapter;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +43,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainAdapterVie
     @Override
     public MainAdapter.MainAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main_adapter, parent, false);
+
+        TextView text = (TextView) view.findViewById(R.id.tvNameText);
+
+        Typeface type = Typeface.createFromAsset(mContext.getAssets() ,"fonts/FrizQuadrata.ttf");
+        text.setTypeface(type);
 
         return new MainAdapterViewHolder(view);
     }

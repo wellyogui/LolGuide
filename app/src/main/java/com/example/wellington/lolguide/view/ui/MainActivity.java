@@ -1,6 +1,7 @@
 package com.example.wellington.lolguide.view.ui;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         setTabs();
 
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/FrizQuadrata.ttf");
+
         fab.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         });
 
-        mAdView = (AdView) findViewById(R.id.adView);
+        mAdView = (AdView) findViewById(R.id.adViewSkin);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
@@ -203,7 +206,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         editText.setBackgroundColor(getResources().getColor(R.color.white));
 
         searchView.setQueryHint(getResources().getString(R.string.hintSearchMess));
-
 
         searchView.setOnQueryTextListener(this);
 

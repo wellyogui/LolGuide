@@ -1,9 +1,13 @@
 package com.example.wellington.lolguide.view.ui.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AlertDialogLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +28,7 @@ import com.example.wellington.lolguide.repository.contracts.ChampionListListener
 import com.example.wellington.lolguide.utils.AppConfigs;
 import com.example.wellington.lolguide.view.adapter.MainAdapter;
 import com.example.wellington.lolguide.view.ui.MainActivity;
+import com.example.wellington.lolguide.view.ui.NoConnection;
 import com.google.android.gms.ads.AdView;
 import com.squareup.picasso.Picasso;
 
@@ -46,11 +51,13 @@ public class ChampionFragment extends Fragment {
     private MainAdapter mainAdapter;
     private ChampionPresenter championPresenter;
     private GridLayoutManager mLayoutManager;
+    public static final int RESULT_NO_CONNECTION = 0;
     private List<ObjectAdapter> list = new ArrayList<>();
     private List<ChampionDto> champList = new ArrayList<>();
     private List<ChampionDto> filterChamp = new ArrayList<>();
     private List<ChampionDto> filterName = new ArrayList<>();
 
+    private Context mcontext;
 
     private String region = "br";
     //endregion
@@ -110,7 +117,13 @@ public class ChampionFragment extends Fragment {
             @Override
             public void onError(Throwable error) {
                 if (error instanceof UnknownHostException) {
-                    Toast.makeText(getActivity(), "Sem conexão com a internet", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getActivity(), "Sem conexão com a internet", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getActivity().getApplicationContext(), NoConnection.class);
+                        startActivityForResult(intent, RESULT_NO_CONNECTION);
+                    } else {
+                        Toast.makeText(getContext(), "Ocorreu um problema ao buscar dados do servidor", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "550605368533-80coj9rhv22502v572rup5oc9mershbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wellington.lolguide",
+            "certificate_hash": "ac20929503078405ee03736c10b0389ab83da86f"
+          }
+        },
+        {
           "client_id": "550605368533-bofq7kd3h96olo7ut5mj87frlu1srci6.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550605368533-bofq7kd3h96olo7ut5mj87frlu1srci6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

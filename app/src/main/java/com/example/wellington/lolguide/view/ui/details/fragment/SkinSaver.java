@@ -1,7 +1,5 @@
 package com.example.wellington.lolguide.view.ui.details.fragment;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +22,8 @@ import android.widget.Toast;
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.model.champion.Skin;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -47,11 +48,13 @@ public class SkinSaver extends AppCompatActivity {
     ImageView ivSkinSaver;
 
     private Context mContext;
-    private Skin skin;
+    private Skin skin = new Skin();
     private String mChampname;
     private ChampionDto champion;
     private String stringSkin;
     private String file = "mydata";
+
+
 
 
     @Override
@@ -146,34 +149,36 @@ public class SkinSaver extends AppCompatActivity {
         Bitmap bm = ivSkinSaver.getDrawingCache();
 
         OutputStream Out = null;
-        String path = Environment.DIRECTORY_PICTURES.toString();
-        File folder = new File(path + "/Blabla");
+
 
         try {
             File mediaFile;
-            File mediaStorageDir = new File(Environment.getExternalStorageDirectory()
-                    + "/Android/data"
-                    + getApplicationContext().getPackageName()
-                    + "/Files");
-            String timeStamp = new SimpleDateFormat("dd/MM/yyyy_HH:mm_").format(new Date());
-            String mImageName = timeStamp + stringSkin;
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator + mImageName);
+            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString());
+            String timeStamp = new SimpleDateFormat("ddMMyyyyHHmm").format(new Date());
+            String mImageName = timeStamp + "_SKIN.jpg";
+            mediaFile = new File(mediaStorageDir.getAbsolutePath() + File.separator + mImageName);
             Out = new FileOutputStream(mediaFile);
+            //noinspection ResultOfMethodCallIgnored
             mediaFile.createNewFile();
-            Toast.makeText(getBaseContext(), "file saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Skin salva com sucesso.", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
-            Toast.makeText(this, "Error occured. Please try again later." + e.getStackTrace(),
+            Toast.makeText(this, "Houve algum error. Tente mais tarde.",
                     Toast.LENGTH_SHORT).show();
 
             e.printStackTrace();
         }
 
         try {
-            bm.compress(Bitmap.CompressFormat.PNG, 100, Out);
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, Out);
             Out.flush();
             Out.close();
         } catch (Exception e) {
+
+            e.printStackTrace();
+
         }
     }
+
+
 }

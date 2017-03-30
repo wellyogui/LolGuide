@@ -1,13 +1,16 @@
 package com.example.wellington.lolguide;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.wellington.lolguide.view.ui.MainActivity;
+import com.example.wellington.lolguide.view.ui.NoConnection;
 import com.example.wellington.lolguide.view.ui.details.ChampionDetail;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +29,8 @@ public class SplashScreen extends AppCompatActivity {
     ImageView ivLogoSplash;
     @Bind(R.id.ivBackGroundSplash)
     ImageView ivBackgroundSplash;
+    @Bind(R.id.tvRX)
+    TextView tvRX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,10 @@ public class SplashScreen extends AppCompatActivity {
 
         showLogo();
         setRandomBackground();
+
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/FrizQuadrata.ttf");
+        tvRX.setTypeface(type);
+
 
         new Handler().postDelayed(new Runnable(){
             @Override

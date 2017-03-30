@@ -4,19 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -80,11 +78,19 @@ public class ChampionDetail extends AppCompatActivity {
     ViewPager viewPager;
     //endregion
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champion_detail);
         ButterKnife.bind(this);
+
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/FrizQuadrata.ttf");
+        tvNameChampion.setTypeface(type);
+        tvTag.setTypeface(type);
+        tvTitleChampion.setTypeface(type);
 
 
         setSupportActionBar(toolbar);
@@ -227,8 +233,7 @@ public class ChampionDetail extends AppCompatActivity {
 
         tabLayout.removeAllTabs();
 
-
-        tabLayout.addTab(tabLayout.newTab().setText("OverView"));
+        tabLayout.addTab(tabLayout.newTab().setText("Detalhes"));
         tabLayout.addTab(tabLayout.newTab().setText("Habilidades"));
         tabLayout.addTab(tabLayout.newTab().setText("Lore"));
         tabLayout.addTab(tabLayout.newTab().setText("Dicas"));

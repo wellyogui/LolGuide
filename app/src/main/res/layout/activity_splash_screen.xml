@@ -14,6 +14,7 @@
         android:scaleType="centerCrop"/>
 
     <TextView
+        android:id="@+id/tvRX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RXILHA"
