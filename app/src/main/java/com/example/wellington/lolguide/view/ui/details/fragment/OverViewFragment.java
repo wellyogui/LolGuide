@@ -2,41 +2,25 @@ package com.example.wellington.lolguide.view.ui.details.fragment;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
-import android.nfc.Tag;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.example.wellington.lolguide.R;
-import com.example.wellington.lolguide.model.champion.Champion;
-import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.model.champion.Info;
 import com.example.wellington.lolguide.model.champion.Stats;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import org.w3c.dom.Text;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
-
-import static android.graphics.Color.BLACK;
 
 
 public class OverViewFragment extends Fragment {
@@ -112,6 +96,18 @@ public class OverViewFragment extends Fragment {
     TextView tvLevel;
     @BindString(R.string.level)
     String levelString;
+    @Bind(R.id.tvInfoTittle)
+    TextView tvInfo;
+    @Bind(R.id.tvAtk)
+    TextView tvAtk;
+    @Bind(R.id.tvDef)
+    TextView tvDef;
+    @Bind(R.id.tvMag)
+    TextView tvMag;
+    @Bind(R.id.tvDif)
+    TextView tvDif;
+    @Bind(R.id.tvStatsTittle)
+    TextView tvStats;
     //endregion
 
 
@@ -141,6 +137,35 @@ public class OverViewFragment extends Fragment {
 
             setLevelSeekBar();
         }
+
+        Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/FrizQuadrata.ttf");
+        tvMpRegen.setTypeface(type);
+        tvMp.setTypeface(type);
+        tvAtaqueCritico.setTypeface(type);
+        tvVelocidadeAtaque.setTypeface(type);
+        tvAlcance.setTypeface(type);
+        tvArmadura.setTypeface(type);
+        tvArmaduraPerLevel.setTypeface(type);
+        tvAtaqueCriticoPerLevel.setTypeface(type);
+        tvDanoAtaque.setTypeface(type);
+        tvDanoAtaquePerLevel.setTypeface(type);
+        tvHp.setTypeface(type);
+        tvHpPerLevel.setTypeface(type);
+        tvHpRegen.setTypeface(type);
+        tvHpRegenPerLevel.setTypeface(type);
+        tvLevel.setTypeface(type);
+        tvMovemetntacao.setTypeface(type);
+        tvMpRegenPerLevel.setTypeface(type);
+        tvMpPerLevel.setTypeface(type);
+        tvSpellBlockPerLevel.setTypeface(type);
+        tvSpelllBlock.setTypeface(type);
+        tvAtk.setTypeface(type);
+        tvDef.setTypeface(type);
+        tvDif.setTypeface(type);
+        tvMag.setTypeface(type);
+        tvInfo.setTypeface(type);
+        tvStats.setTypeface(type);
+
 
         return view;
     }

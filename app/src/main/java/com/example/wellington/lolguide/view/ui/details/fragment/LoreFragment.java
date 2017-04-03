@@ -1,6 +1,7 @@
 package com.example.wellington.lolguide.view.ui.details.fragment;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,8 @@ public class LoreFragment extends Fragment {
 
     @Bind(R.id.tvLore)
     TextView tvLore;
+    @Bind(R.id.tvLoreTitle)
+    TextView tvLoreTittle;
 
     public LoreFragment() {
         // Required empty public constructor
@@ -46,6 +49,9 @@ public class LoreFragment extends Fragment {
             getLore(lore);
         }
 
+        Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/FrizQuadrata.ttf");
+        tvLore.setTypeface(type);
+        tvLoreTittle.setTypeface(type);
 
         return view;
     }

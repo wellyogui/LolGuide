@@ -29,6 +29,7 @@
 
 
                 <TextView
+                    android:id="@+id/tvSkillDetail"
                     style="@style/fontTitleStyle"
                     android:text="Skills: "
                     android:paddingLeft="10dp"
@@ -36,7 +37,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
                     android:orientation="horizontal"
                     android:gravity="center_horizontal">
 
@@ -47,14 +49,14 @@
 
                         <ImageView
                             android:id="@+id/ivBorder1"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/borderskill" />
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/border3" />
 
                         <ImageButton
                             android:id="@+id/ibSkill1"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerInParent="true"
                             android:background="@android:color/transparent"
                             android:scaleType="fitCenter"
@@ -70,14 +72,14 @@
 
                         <ImageView
                             android:id="@+id/ivBorder2"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/borderskill" />
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/border3" />
 
                         <ImageButton
                             android:id="@+id/ibSkill2"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerInParent="true"
                             android:background="@android:color/transparent"
                             android:scaleType="fitXY"
@@ -92,14 +94,14 @@
 
                         <ImageView
                             android:id="@+id/ivBorder3"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/borderskill" />
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/border3" />
 
                         <ImageButton
                             android:id="@+id/ibSkill3"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerInParent="true"
 
                             android:background="@android:color/transparent"
@@ -115,14 +117,14 @@
 
                         <ImageView
                             android:id="@+id/ivBorder4"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/borderskill" />
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/border3" />
 
                         <ImageButton
                             android:id="@+id/ibSkill4"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerInParent="true"
                             android:background="@android:color/transparent"
                             android:scaleType="fitXY"
@@ -137,14 +139,14 @@
 
                         <ImageView
                             android:id="@+id/ivBorder5"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/borderskill" />
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/border3" />
 
                         <ImageButton
                             android:id="@+id/ibSkill5"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerInParent="true"
                             android:background="@android:color/transparent"
                             android:scaleType="fitXY"

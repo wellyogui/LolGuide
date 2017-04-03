@@ -91,6 +91,7 @@ public class ChampionDetail extends AppCompatActivity {
         tvNameChampion.setTypeface(type);
         tvTag.setTypeface(type);
         tvTitleChampion.setTypeface(type);
+        tvTag.setTypeface(type);
 
 
         setSupportActionBar(toolbar);

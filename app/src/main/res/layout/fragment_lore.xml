@@ -30,6 +30,7 @@
 
 
                 <TextView
+                    android:id="@+id/tvLoreTitle"
                     style="@style/fontTitleStyle"
                     android:paddingBottom="10dp"
                     android:text="Lore: " />

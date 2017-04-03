@@ -1,6 +1,7 @@
 package com.example.wellington.lolguide.view.ui.details.fragment;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.wellington.lolguide.R;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -31,6 +34,10 @@ public class TipsFragment extends Fragment {
     TextView tvAllyTips;
     @Bind(R.id.tvEnemyTips)
     TextView tvEnemyTips;
+    @Bind(R.id.tvAllyTittle)
+    TextView tvAllyTittle;
+    @Bind(R.id.tvEnemyTittle)
+    TextView tvEnemyTittle;
 
 
     public TipsFragment() {
@@ -51,6 +58,10 @@ public class TipsFragment extends Fragment {
 
             getTips(allyList, enemyList);
         }
+
+        Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/FrizQuadrata.ttf");
+        tvAllyTittle.setTypeface(type);
+        tvEnemyTittle.setTypeface(type);
 
         return view;
     }

@@ -3,6 +3,7 @@ package com.example.wellington.lolguide.view.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -64,6 +65,8 @@ public class SkinAdapter extends RecyclerView.Adapter<SkinAdapter.SkinAdapterVie
         }
         holder.tvNameSkin.setText(skinName);
         holder.bind(skin, stringSkin, listener);
+        Typeface type = Typeface.createFromAsset(mContext.getAssets(), "fonts/FrizQuadrata.ttf");
+        holder.tvNameSkin.setTypeface(type);
 
 
         Picasso.with(mContext).load(stringSkin).placeholder(R.drawable.bg_detail).into(holder.ivSkin);

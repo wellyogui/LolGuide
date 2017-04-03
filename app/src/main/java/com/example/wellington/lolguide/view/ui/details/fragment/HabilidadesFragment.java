@@ -2,6 +2,7 @@ package com.example.wellington.lolguide.view.ui.details.fragment;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,8 @@ public class HabilidadesFragment extends Fragment {
     TextView tvTitleCustoSkill;
     @Bind(R.id.tvTitleEfeitoSkill)
     TextView tvTitleEfeitoSkill;
+    @Bind(R.id.tvSkillDetail)
+    TextView tvSkillDetail;
 
 
     @Bind(R.id.ibSkill1)
@@ -110,6 +113,19 @@ public class HabilidadesFragment extends Fragment {
 
 
         }
+
+
+        Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/FrizQuadrata.ttf");
+        tvNomeSkill.setTypeface(type);
+        tvAlcance.setTypeface(type);
+        tvCoolDownSkill.setTypeface(type);
+        tvCostSkill.setTypeface(type);
+        tvDescricaoSkill.setTypeface(type);
+        tvEfeitoSkill.setTypeface(type);
+        tvTitleAlcanceSkill.setTypeface(type);
+        tvTitleCustoSkill.setTypeface(type);
+        tvTitleEfeitoSkill.setTypeface(type);
+        tvSkillDetail.setTypeface(type);
 
         return view;
 
