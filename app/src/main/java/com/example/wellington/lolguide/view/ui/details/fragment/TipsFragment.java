@@ -62,6 +62,8 @@ public class TipsFragment extends Fragment {
         Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/FrizQuadrata.ttf");
         tvAllyTittle.setTypeface(type);
         tvEnemyTittle.setTypeface(type);
+        tvAllyTips.setTypeface(type);
+        tvEnemyTips.setTypeface(type);
 
         return view;
     }

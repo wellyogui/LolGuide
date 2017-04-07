@@ -30,14 +30,7 @@ public class OverViewFragment extends Fragment {
     public static final String TAG = "tags";
 
     //region [Bind Info]
-//    @Bind(R.id.tvAtaque)
-//    TextView tvAtaque;
-//    @Bind(R.id.tvDefesa)
-//    TextView tvDefesa;
-//    @Bind(R.id.tvMagica)
-//    TextView tvMagica;
-//    @Bind(R.id.tvDificu)
-//    TextView tvDificuldade;
+
     @Bind(R.id.progressBarAt)
     ProgressBar progressBarAt;
     @Bind(R.id.progressBarDe)
@@ -110,6 +103,31 @@ public class OverViewFragment extends Fragment {
     TextView tvStats;
     //endregion
 
+    //region [BindTittles]
+    @Bind(R.id.tvHPTittle)
+    TextView tvHPtittle;
+    @Bind(R.id.tvRegHpTittle)
+    TextView tvRegHpTittle;
+    @Bind(R.id.tvArmTittle)
+    TextView tvArm;
+    @Bind(R.id.tvDn)
+    TextView tvDn;
+    @Bind(R.id.tvVa)
+    TextView tvVa;
+    @Bind(R.id.tvAl)
+    TextView tvAl;
+    @Bind(R.id.tvAc)
+    TextView tvAc;
+    @Bind(R.id.tvVm)
+    TextView tvVm;
+    @Bind(R.id.tvMpTittle)
+    TextView tvMpTittle;
+    @Bind(R.id.tvRegMpTittle)
+    TextView tvRegMpTittle;
+    @Bind(R.id.tvBf)
+    TextView tvBf;
+    //endregion
+
 
     private View view;
     private Stats stats;
@@ -139,6 +157,8 @@ public class OverViewFragment extends Fragment {
         }
 
         Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/FrizQuadrata.ttf");
+
+        //region [TypeFace]
         tvMpRegen.setTypeface(type);
         tvMp.setTypeface(type);
         tvAtaqueCritico.setTypeface(type);
@@ -165,7 +185,18 @@ public class OverViewFragment extends Fragment {
         tvMag.setTypeface(type);
         tvInfo.setTypeface(type);
         tvStats.setTypeface(type);
-
+        tvBf.setTypeface(type);
+        tvRegMpTittle.setTypeface(type);
+        tvMpTittle.setTypeface(type);
+        tvVm.setTypeface(type);
+        tvAc.setTypeface(type);
+        tvAl.setTypeface(type);
+        tvVa.setTypeface(type);
+        tvDn.setTypeface(type);
+        tvArm.setTypeface(type);
+        tvRegHpTittle.setTypeface(type);
+        tvHPtittle.setTypeface(type);
+        //endregion
 
         return view;
     }
@@ -184,23 +215,10 @@ public class OverViewFragment extends Fragment {
 
     public void getInfo() {
 
-//        tvAtaque.setText(String.valueOf(info.attack));
-//        tvDefesa.setText(String.valueOf(info.defense));
-//        tvMagica.setText(String.valueOf(info.magic));
-//        tvDificuldade.setText(String.valueOf(info.difficulty));
 
-//        progressBarAt.setProgress(info.attack);
         animateProgress(progressBarAt, info.attack);
-
-//        progressBarDe.setProgress(info.defense);
         animateProgress(progressBarDe, info.defense);
-
-
-//        progressBarMa.setProgress(info.magic);
         animateProgress(progressBarMa, info.magic);
-
-
-//        progressBarDi.setProgress(info.difficulty);
         animateProgress(progressBarDi, info.difficulty);
 
 

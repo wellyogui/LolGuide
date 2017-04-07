@@ -93,7 +93,6 @@ public class ChampionDetail extends AppCompatActivity {
         tvTitleChampion.setTypeface(type);
         tvTag.setTypeface(type);
 
-
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

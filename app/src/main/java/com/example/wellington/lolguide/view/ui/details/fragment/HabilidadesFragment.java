@@ -52,6 +52,9 @@ public class HabilidadesFragment extends Fragment {
     TextView tvTitleEfeitoSkill;
     @Bind(R.id.tvSkillDetail)
     TextView tvSkillDetail;
+    @Bind(R.id.tvTitleDescricaoSkill)
+    TextView tvTittleDescricaoSkill;
+
 
 
     @Bind(R.id.ibSkill1)
@@ -116,6 +119,8 @@ public class HabilidadesFragment extends Fragment {
 
 
         Typeface type = Typeface.createFromAsset(getContext().getAssets(), "fonts/FrizQuadrata.ttf");
+
+        //region [TypeFace]
         tvNomeSkill.setTypeface(type);
         tvAlcance.setTypeface(type);
         tvCoolDownSkill.setTypeface(type);
@@ -126,6 +131,9 @@ public class HabilidadesFragment extends Fragment {
         tvTitleCustoSkill.setTypeface(type);
         tvTitleEfeitoSkill.setTypeface(type);
         tvSkillDetail.setTypeface(type);
+        TvTitleCoolDownSkill.setTypeface(type);
+        tvTittleDescricaoSkill.setTypeface(type);
+        //endregion
 
         return view;
 

@@ -202,6 +202,7 @@
                     android:paddingTop="15dp">
 
                     <TextView
+                        android:id="@+id/tvHPTittle"
                         style="@style/fontSubTitle"
                         android:text="HP: " />
 
@@ -226,6 +227,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvRegHpTittle"
                         style="@style/fontSubTitle"
                         android:text="Regeneração de HP: " />
 
@@ -250,6 +252,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvArmTittle"
                         style="@style/fontSubTitle"
                         android:text="Armadura: " />
 
@@ -274,6 +277,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvDn"
                         style="@style/fontSubTitle"
                         android:text="Dano de Ataque: " />
 
@@ -299,6 +303,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvVa"
                         style="@style/fontSubTitle"
                         android:text="Velocidade do Ataque: " />
 
@@ -324,6 +329,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvAl"
                         style="@style/fontSubTitle"
                         android:text="Alcance: " />
 
@@ -342,6 +348,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvAc"
                         style="@style/fontSubTitle"
                         android:text="Ataque Crítico: " />
 
@@ -367,6 +374,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvVm"
                         style="@style/fontSubTitle"
                         android:text="Velocidade de movimentação: " />
 
@@ -385,6 +393,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvMpTittle"
                         style="@style/fontSubTitle"
                         android:text="MP: " />
 
@@ -410,6 +419,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvRegMpTittle"
                         style="@style/fontSubTitle"
                         android:text="Regeneração de MP: " />
 
@@ -435,6 +445,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvBf"
                         style="@style/fontSubTitle"
                         android:text="Bloqueio de Feitiço: " />
 

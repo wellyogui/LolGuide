@@ -31,16 +31,16 @@
                 <TextView
                     android:id="@+id/tvSkillDetail"
                     style="@style/fontTitleStyle"
-                    android:text="Skills: "
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:paddingBottom="10dp"/>
+                    android:text="Skills: " />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
+                    android:gravity="center_horizontal"
                     android:orientation="horizontal"
-                    android:gravity="center_horizontal">
+                    android:paddingTop="15dp">
 
 
                     <RelativeLayout
@@ -171,8 +171,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -182,8 +181,8 @@
                     <TextView
                         android:id="@+id/tvNomeSkill"
                         style="@style/fontTitleStyle"
-                        android:text="Nome da Skill: "
-                        android:paddingBottom="10dp"/>
+                        android:paddingBottom="10dp"
+                        android:text="Nome da Skill: " />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -208,8 +207,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:paddingTop="5dp">
 
                         <TextView
                             android:id="@+id/tvTitleCustoSkill"
@@ -228,12 +227,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvTitleAlcanceSkill"
                             style="@style/fontSubTitle"
+                            android:paddingTop="5dp"
                             android:text="Alcance: " />
 
 
@@ -248,12 +247,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvTitleCoolDownSkill"
                             style="@style/fontSubTitle"
+                            android:paddingTop="5dp"
                             android:text="Cool Down: " />
 
 
@@ -268,12 +267,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvTitleEfeitoSkill"
                             style="@style/fontSubTitle"
+                            android:paddingTop="5dp"
                             android:text="Efeito: " />
 
 
