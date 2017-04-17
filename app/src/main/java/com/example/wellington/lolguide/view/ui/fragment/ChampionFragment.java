@@ -2,9 +2,11 @@ package com.example.wellington.lolguide.view.ui.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AlertDialogLayout;
@@ -14,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
@@ -26,10 +29,12 @@ import com.example.wellington.lolguide.presenter.ChampionPresenter;
 import com.example.wellington.lolguide.repository.contracts.ChampFreeListListener;
 import com.example.wellington.lolguide.repository.contracts.ChampionListListener;
 import com.example.wellington.lolguide.utils.AppConfigs;
+import com.example.wellington.lolguide.utils.OnBackPressedListener;
 import com.example.wellington.lolguide.view.adapter.MainAdapter;
 import com.example.wellington.lolguide.view.ui.MainActivity;
 import com.example.wellington.lolguide.view.ui.NoConnection;
 import com.google.android.gms.ads.AdView;
+import com.ldoublem.loadingviewlib.view.LVCircularRing;
 import com.squareup.picasso.Picasso;
 
 import java.net.UnknownHostException;
@@ -43,7 +48,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class ChampionFragment extends Fragment {
+public class ChampionFragment extends Fragment implements OnBackPressedListener {
 
     public static final String CHAMPION = "champion";
 
@@ -66,7 +71,10 @@ public class ChampionFragment extends Fragment {
     RecyclerView rvChampion;
     @Bind(R.id.ivLogo)
     ImageView ivLogo;
-
+    @Bind(R.id.llLoading)
+    RelativeLayout llLoading;
+    @Bind(R.id.lv_circularring)
+    LVCircularRing lvCircularRing;
 
 
     public ChampionFragment() {
@@ -87,11 +95,11 @@ public class ChampionFragment extends Fragment {
 
 
 
+
         getList();
 
         return view;
     }
-
 
 
     private void getList() {
@@ -106,12 +114,12 @@ public class ChampionFragment extends Fragment {
 
             @Override
             public void onRequestStarted() {
-
+                startLoadingScreen();
             }
 
             @Override
             public void onRequestFinished() {
-
+                dismissLoadingScreen();
             }
 
             @Override
@@ -119,16 +127,36 @@ public class ChampionFragment extends Fragment {
                 if (error instanceof UnknownHostException) {
 //                    Toast.makeText(getActivity(), "Sem conexão com a internet", Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(getActivity().getApplicationContext(), NoConnection.class);
-                        startActivityForResult(intent, RESULT_NO_CONNECTION);
-                    } else {
-                        Toast.makeText(getContext(), "Ocorreu um problema ao buscar dados do servidor", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity().getApplicationContext(), NoConnection.class);
+                    startActivityForResult(intent, RESULT_NO_CONNECTION);
+                } else {
+                    Toast.makeText(getContext(), "Ocorreu um problema ao buscar dados do servidor", Toast.LENGTH_SHORT).show();
 
                 }
             }
         });
     }
 
+    private void startLoadingScreen() {
+        llLoading.setVisibility(View.VISIBLE);
+        lvCircularRing.setViewColor(Color.argb(100, 255, 255, 255));
+        lvCircularRing.setBarColor(Color.YELLOW);
+        lvCircularRing.startAnim();
+    }
+
+    private void dismissLoadingScreen() {
+        llLoading.setVisibility(View.GONE);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("CLOSEAPP", true);
+        startActivity(intent);
+    }
 
     public void displayChampionList(List<ObjectAdapter> championList) {
         list = championList;

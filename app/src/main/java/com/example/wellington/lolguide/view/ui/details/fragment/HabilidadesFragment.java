@@ -56,7 +56,6 @@ public class HabilidadesFragment extends Fragment {
     TextView tvTittleDescricaoSkill;
 
 
-
     @Bind(R.id.ibSkill1)
     ImageButton ibSKill1;
     @Bind(R.id.ibSkill2)
@@ -145,7 +144,13 @@ public class HabilidadesFragment extends Fragment {
         Picasso.with(getActivity()).load(String.format(AppConfigs.portraitSpell, mSpell.get(1).image.full)).into(ibSKill2);
         Picasso.with(getActivity()).load(String.format(AppConfigs.portraitSpell, mSpell.get(2).image.full)).into(ibSKill3);
         Picasso.with(getActivity()).load(String.format(AppConfigs.portraitSpell, mSpell.get(3).image.full)).into(ibSKill4);
-        Picasso.with(getActivity()).load(String.format(AppConfigs.portraitPassive, mPassive.image.full)).into(ibSKill5);
+        if (mPassive.image.full.contains(" ")) {
+            String passive = mPassive.image.full.replace(" ", "%20");
+            Picasso.with(getActivity()).load(String.format(AppConfigs.portraitPassive, passive)).into(ibSKill5);
+
+        } else{
+            Picasso.with(getActivity()).load(String.format(AppConfigs.portraitPassive, mPassive.image.full)).into(ibSKill5);
+        }
     }
 
     @OnClick(R.id.ibSkill1)
@@ -227,7 +232,6 @@ public class HabilidadesFragment extends Fragment {
         tvTitleCustoSkill.setVisibility(View.VISIBLE);
         TvTitleCoolDownSkill.setVisibility(View.VISIBLE);
         tvTitleEfeitoSkill.setVisibility(View.VISIBLE);
-
 
 
     }

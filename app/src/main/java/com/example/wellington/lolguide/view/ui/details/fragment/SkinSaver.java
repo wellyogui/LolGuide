@@ -10,20 +10,28 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.champion.ChampionDto;
 import com.example.wellington.lolguide.model.champion.Skin;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -31,9 +39,11 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -53,9 +63,11 @@ public class SkinSaver extends AppCompatActivity {
     private ChampionDto champion;
     private String stringSkin;
     private String file = "mydata";
+    private AutoCompleteTextView mUserView;
 
+    private static final String TAG = "MainActivity";
 
-
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +92,19 @@ public class SkinSaver extends AppCompatActivity {
         getSkin();
 
 
+
+        mAdView = (AdView) findViewById(R.id.adViewSkin);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        if (getResources().getConfiguration().orientation == 2){
+            mAdView.setVisibility(View.GONE);
+        } else {
+            mAdView.setVisibility(View.VISIBLE);
+        }
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -160,6 +184,13 @@ public class SkinSaver extends AppCompatActivity {
             Out = new FileOutputStream(mediaFile);
             //noinspection ResultOfMethodCallIgnored
             mediaFile.createNewFile();
+//            Snackbar.make(mUserView, "Skin Salva Com Sucesso", Snackbar.LENGTH_INDEFINITE)
+//                    .setAction(android.R.string.ok, new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                        }
+//                    });
             Toast.makeText(getBaseContext(), "Skin salva com sucesso.", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {

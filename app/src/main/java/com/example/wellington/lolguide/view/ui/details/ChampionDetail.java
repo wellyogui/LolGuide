@@ -2,6 +2,7 @@ package com.example.wellington.lolguide.view.ui.details;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -14,12 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wellington.lolguide.R;
 import com.example.wellington.lolguide.model.ObjectAdapter;
@@ -28,14 +31,22 @@ import com.example.wellington.lolguide.model.champion.Skin;
 import com.example.wellington.lolguide.presenter.ChampionPresenter;
 import com.example.wellington.lolguide.repository.contracts.ChampionDetailListener;
 import com.example.wellington.lolguide.utils.AppConfigs;
+import com.example.wellington.lolguide.view.ui.NoConnection;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.ldoublem.loadingviewlib.view.LVCircularRing;
 import com.squareup.picasso.Picasso;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static com.example.wellington.lolguide.view.ui.fragment.ChampionFragment.RESULT_NO_CONNECTION;
 
 public class ChampionDetail extends AppCompatActivity {
 
@@ -79,6 +90,9 @@ public class ChampionDetail extends AppCompatActivity {
     //endregion
 
 
+    InterstitialAd mInterstitialAd;
+    private static final String LOG_TAG = "InterstitialSample";
+
 
 
     @Override
@@ -107,12 +121,68 @@ public class ChampionDetail extends AppCompatActivity {
                 .inflateTransition(R.transition.transition));
 
 
-        setDetails();
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.idIntersticialAd));
+
+        MobileAds.initialize(this, String.valueOf(R.string.idIntersticialAd));
+
+        requestNewInterstitial();
+
+        randomAd();
 
 //        setSwipe();
 
+//        setDetails();
+
 
     }
+
+
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .tagForChildDirectedTreatment(true)
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
+
+        mInterstitialAd.show();
+    }
+
+    private void randomAd(){
+        Random random = new Random();
+        int i = random.nextInt(10);
+
+        if (i <= 3){
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(int i) {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onAdLoaded() {
+                    Log.d(LOG_TAG, "onAdLoaded");
+                    mInterstitialAd.show();
+                }
+
+                @Override
+                public void onAdOpened() {
+                    setDetails();
+                }
+
+                @Override
+                public void onAdClosed() {
+
+                }
+            });
+        } else {
+            setDetails();
+        }
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -161,6 +231,11 @@ public class ChampionDetail extends AppCompatActivity {
 
 
     public void setDetails() {
+        if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mInterstitialAd.loadAd(adRequest);
+        }
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String id = bundle.getString(ObjectAdapter.ID);
@@ -186,6 +261,8 @@ public class ChampionDetail extends AppCompatActivity {
 
                 @Override
                 public void onError(Throwable error) {
+                    Intent intent = new Intent(getBaseContext().getApplicationContext(), NoConnection.class);
+                    startActivityForResult(intent, RESULT_NO_CONNECTION);
 
                 }
             });
@@ -204,7 +281,7 @@ public class ChampionDetail extends AppCompatActivity {
         setTag(championDto.tags);
 
 
-            Picasso.with(mContext).load(String.format(AppConfigs.portraitChampion, championDto.image.full)).into(ivPortrait);
+        Picasso.with(mContext).load(String.format(AppConfigs.portraitChampion, championDto.image.full)).into(ivPortrait);
 
 
     }

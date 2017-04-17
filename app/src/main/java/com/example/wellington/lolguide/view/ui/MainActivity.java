@@ -87,6 +87,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         mAdView.loadAd(adRequest);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish(); // finish activity
+
+
+    }
+
     @OnClick(R.id.viewClickable)
     public void viewClick() {
 

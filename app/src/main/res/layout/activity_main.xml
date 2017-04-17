@@ -46,8 +46,8 @@
         fab:menu_animationDelayPerItem="50"
         fab:menu_backgroundColor="@color/viewBackground"
         fab:menu_buttonSpacing="0dp"
-        fab:menu_colorNormal="#cc9900"
-        fab:menu_colorPressed="#cc9900"
+        fab:menu_colorNormal="#ccb642"
+        fab:menu_colorPressed="#ccb642"
         fab:menu_colorRipple="#99FFFFFF"
         fab:menu_fab_label="Filtro"
         fab:menu_fab_size="mini"
@@ -83,8 +83,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_az"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Ordem Alfabetica"
             fab:fab_size="mini" />
 
@@ -93,8 +93,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_tank"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Tanque"
             fab:fab_size="mini" />
 
@@ -103,8 +103,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_fighter"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Lutador"
             fab:fab_size="mini" />
 
@@ -113,8 +113,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_adc"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Atirador"
             fab:fab_size="mini" />
 
@@ -123,8 +123,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_assassin"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Assassino"
             fab:fab_size="mini" />
 
@@ -133,8 +133,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_support"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Suporte"
             fab:fab_size="mini" />
 
@@ -143,8 +143,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_mage"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Mago"
             fab:fab_size="mini" />
 
@@ -153,8 +153,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_calendar"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Free Week"
             fab:fab_size="mini" />
 
@@ -163,8 +163,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_nonfilter"
-            fab:fab_colorNormal="#cc9900"
-            fab:fab_colorPressed="#cc9900"
+            fab:fab_colorNormal="#ccb642"
+            fab:fab_colorPressed="#ccb642"
             fab:fab_label="Limpar Filtro"
             fab:fab_size="mini" />
 

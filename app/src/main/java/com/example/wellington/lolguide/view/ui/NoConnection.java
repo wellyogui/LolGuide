@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +27,9 @@ public class NoConnection extends AppCompatActivity {
     @Bind(R.id.btnTryAgain)
     Button btn;
 
+    private Boolean exit = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,7 @@ public class NoConnection extends AppCompatActivity {
         tvWarning.setTypeface(type);
 
         btn.setTypeface(type);
+
 
     }
 
@@ -53,6 +58,14 @@ public class NoConnection extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("CLOSEAPP", true);
+        startActivity(intent);
+    }
 
     @OnClick(R.id.btnTryAgain)
     public void onRetryClick() {
