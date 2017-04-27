@@ -16,5 +16,10 @@
     <string name="my_skin">Skin</string>
     <string name="share_using">Compartilhar com ...</string>
     <string name="OverView">OverView</string>
+    <string name="detalhes">Detalhes</string>
+    <string name="habilidades">Habilidades</string>
+    <string name="lore">Lore</string>
+    <string name="dicas">Dicas</string>
+    <string name="skins">Skins</string>
 
 </resources>

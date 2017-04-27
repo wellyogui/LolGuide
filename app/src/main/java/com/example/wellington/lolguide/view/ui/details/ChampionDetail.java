@@ -13,11 +13,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -42,11 +44,14 @@ import com.squareup.picasso.Picasso;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import butterknife.Bind;
+import butterknife.BindString;
 import butterknife.ButterKnife;
 
 import static com.example.wellington.lolguide.view.ui.fragment.ChampionFragment.RESULT_NO_CONNECTION;
+import static java.security.AccessController.getContext;
 
 public class ChampionDetail extends AppCompatActivity {
 
@@ -87,6 +92,7 @@ public class ChampionDetail extends AppCompatActivity {
     TabLayout tabLayout;
     @Bind(R.id.viewpager_main)
     ViewPager viewPager;
+
     //endregion
 
 
@@ -100,6 +106,8 @@ public class ChampionDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champion_detail);
         ButterKnife.bind(this);
+
+        lvCircularRing.setBarColor(Color.YELLOW);
 
         Typeface type = Typeface.createFromAsset(getAssets(), "fonts/FrizQuadrata.ttf");
         tvNameChampion.setTypeface(type);
@@ -131,13 +139,10 @@ public class ChampionDetail extends AppCompatActivity {
 
         randomAd();
 
-//        setSwipe();
-
 //        setDetails();
 
 
     }
-
 
 
     private void requestNewInterstitial() {
@@ -213,22 +218,6 @@ public class ChampionDetail extends AppCompatActivity {
 
     }
 
-//    private void setSwipe() {
-//        View myView = findViewById(R.id.llPrincipal);
-//        myView.setOnTouchListener(new View.OnTouchListener() {
-//            public boolean onTouch(View v, MotionEvent event) {
-//                int action = MotionEventCompat.getActionMasked(event);
-//                switch (action) {
-//                    case (MotionEvent.ACTION_DOWN):
-//                        onBackPressed();
-//                        return true;
-//                    default:
-//                        return true;
-//                }
-//            }
-//        });
-//    }
-
 
     public void setDetails() {
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
@@ -280,8 +269,10 @@ public class ChampionDetail extends AppCompatActivity {
 
         setTag(championDto.tags);
 
+        String cv = championDto.image.full;
 
-        Picasso.with(mContext).load(String.format(AppConfigs.portraitChampion, championDto.image.full)).into(ivPortrait);
+
+        Picasso.with(mContext).load(String.format(AppConfigs.portraitChampion, cv)).into(ivPortrait);
 
 
     }
@@ -304,17 +295,41 @@ public class ChampionDetail extends AppCompatActivity {
 
     }
 
+    protected void changeTabsFont(TabLayout tabLayout) {
+        Logger.getLogger("In change tab font");
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        Logger.getLogger("Tab count--->"+tabsCount);
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof AppCompatTextView) {
+                    Logger.getLogger("In font");
+                    Typeface type = Typeface.createFromAsset(getAssets(), "fonts/FrizQuadrata.ttf");
+                    TextView viewChild = (TextView) tabViewChild;
+                    viewChild.setTypeface(type);
+                    viewChild.setTextSize(30);
+                }
+            }
+        }
+    }
+
 
     public void setTabs(ChampionDto championdto) {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         tabLayout.removeAllTabs();
 
-        tabLayout.addTab(tabLayout.newTab().setText("Detalhes"));
-        tabLayout.addTab(tabLayout.newTab().setText("Habilidades"));
-        tabLayout.addTab(tabLayout.newTab().setText("Lore"));
-        tabLayout.addTab(tabLayout.newTab().setText("Dicas"));
-        tabLayout.addTab(tabLayout.newTab().setText("Skins"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.detalhes));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.habilidades));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.lore));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.dicas));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.skins));
+        changeTabsFont(tabLayout);
+
+
 
         MyPageAdapter mpAdapter = new MyPageAdapter(fragmentManager, championdto);
         viewPager.setAdapter(mpAdapter);
@@ -343,9 +358,8 @@ public class ChampionDetail extends AppCompatActivity {
     }
 
     private void startLoadingScreen() {
-        llLoading.setVisibility(View.VISIBLE);
         lvCircularRing.setViewColor(Color.argb(100, 255, 255, 255));
-        lvCircularRing.setBarColor(Color.YELLOW);
+        llLoading.setVisibility(View.VISIBLE);
         lvCircularRing.startAnim();
     }
 

@@ -20,6 +20,7 @@
 
     <style name="TabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/TabText</item>
+        <item name="android:textSize">20sp</item>
         <item name="tabSelectedTextColor">@color/colorAccent</item>
     </style>
 

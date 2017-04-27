@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/FrizQuadrata.ttf");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("");
@@ -62,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         toolbar.setTitleMarginTop(20);
 
         setTabs();
-
-        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/FrizQuadrata.ttf");
 
         fab.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
